@@ -1,0 +1,13 @@
+Create a singly list that the last node next address will point to the first node.
+
+The nodes should consist of 2 types of data, a prime and a composite.
+
+1 - If the input value is a prime number, then store it to the first data variable of the node and the program will find the nearest and lesser composite number base from the prime number. The composite number will be stored at the second data variable of the node.
+
+2 - Similarly to the composite, but put the composite to the second data variable, find the nearest and greater prime number base from the given composite number. If such prime number is found, put it to the 1st data variable of the node
+
+Option - Since the data are circular, the user can choose what position to start in displaying the values and it should end before the given position
+
+Example, if there are 5 positions and the user wants to start displaying in position 3 then print the values at position 3, 4, 5, 1, 2
+
+Note that prime and composite should display together, and be clear enough that they are paired.

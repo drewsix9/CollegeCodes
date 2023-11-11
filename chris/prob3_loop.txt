@@ -1,0 +1,10 @@
+Asks  for a number and calculates the sum of the squares of each number  from 0 to number, where number is specified by the user.
+
+0
+1
+4
+9
+16
+25
+36
+sum = 90

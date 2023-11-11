@@ -1,0 +1,16 @@
+// Ask num of Input
+// Enter inputs
+
+// First output either one of the two
+// 1 - Ascending Output
+// 2 - Descending Ouput
+
+// Second output either one of the two
+// 1 - Average
+// 2 - Sum
+
+// Then Print Ouput
+
+// Then another option
+// 1 - Continue or Repeat for another Ouput
+// 2 - Exit or stop the program

@@ -1,0 +1,19 @@
+Enter how many arrays/set: 3
+Set1: 11 7 8.6 12 0
+Set2: 18 19 17 0
+Set3: 5 15 7.2 9 0
+
+The prime whole numbers of each sets are:
+Set1: 11 7
+Set2: 19 17
+Set3: 5
+(Then mangutana if sani buhaton anang 3 ka sets na prime)
+Add
+Multiply
+
+Then ang ilang equal is eh convert to BCD katung 1 2 4 2 binary weight
+
+3
+11 7 8.6 12 0
+18 19 17 0
+5 15 7.2 9 0

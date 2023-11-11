@@ -1,0 +1,18 @@
+Choice 1
+A. Convert Binary to decimal
+B. Convert Octal to decimal
+
+Choice 2
+A. Prime Numbers Only
+B. Composite Numbers only
+
+True to all output:
+Give the least common multiple of the largest and smallest numbers.
+
+Input: 101 211 011 111 100
+Choice 1: A
+Choice 2: A
+
+Output: 5, (dili ma print ang ikaduha kay dili binary number), 3, 7, (dili ma print ang last kay di prime)
+
+Least common multiple of 3 and 7: 21

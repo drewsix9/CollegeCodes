@@ -1,0 +1,10 @@
+enter a string of binary inputs
+convert to decimal, if it has '.' do not convert
+
+1101 1011 101 1.1
+
+13   11   5
+
+1
+4
+8

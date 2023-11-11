@@ -1,0 +1,22 @@
+enter number of inputs
+enter inputs:
+
+1 - ascending
+2 - descending
+3 - print prime only
+4 - print comp only
+
+enter what options to output and prints 
+them until user inputs 0
+
+no. of inputs: 5
+enter inputs: 1 2 3 4 5
+enter options: 4 1 3 2 1 2 4 0
+
+Output 1: 4
+Output 2: 1 2 3 4 5
+Output 3: 2 3 5
+Output 4: 5 4 3 2 1
+Output 5: 1 2 3 4 5
+Output 6: 5 4 3 2 1
+Output 7: 4

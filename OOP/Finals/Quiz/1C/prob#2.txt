@@ -1,0 +1,10 @@
+input: hello world orleans
+string to be reversed: orl
+
+output: hello wlrod lroeans
+
+
+012345678901234
+hello world orleans
+
+

@@ -1,0 +1,13 @@
+Problem: Unique Strings in Linked List
+
+You are given a linked list of strings. Your task is to implement a function that removes all duplicate strings from the linked list, keeping only the unique strings. The function should return the resulting linked list.
+
+Test Case:
+
+Input:
+
+Linked List: "apple" -> "banana" -> "apple" -> "orange" -> "banana"
+Expected Output:
+
+Unique Linked List: "apple" -> "banana" -> "orange"
+In this test case, the input linked list contains duplicate strings ("apple" and "banana"). The expected output is a linked list that retains only the unique strings, removing the duplicates.

@@ -1,0 +1,14 @@
+Numerators:
+Denominators:
+
+First input numerator the partner is the pirst input denominator, and so on respectively.
+
+Choice 1: Add the Fractions
+Choice 2: Subtract
+Choice 3: Multiply
+Choice 4: Divide
+
+Dapat ang answer kay ang pinaka simplified nga fraction haha
+
+Numerator:   5 8 2 6 0
+Denominator: 7 9 3 7 0

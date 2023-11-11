@@ -1,0 +1,28 @@
+Enter the number of students
+Then mo ask sa name sa students then after ana mo ask sa score. Then repeatedly hantod mo stop na sa number of student. Then naa ra naho if e print tong name as students nga naka pass or na failed.
+
+Input no. of students: 3
+
+Name of Student?
+Dan
+Score?
+65
+
+Name of Student?
+Rey
+Score?
+99
+
+Name of Student?
+Steven
+Score?
+99
+
+[1] Print students who passed:
+[2] Print students who failed:
+Enter choice:
+1
+
+Students who passed:
+Rey
+Steven

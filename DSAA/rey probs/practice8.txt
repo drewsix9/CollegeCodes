@@ -1,0 +1,18 @@
+Problem: Unique Characters in Linked List
+
+Given a linked list of strings, determine if each string in the list contains only unique characters. Return a new linked list where each node contains a boolean value indicating whether the corresponding string in the original linked list has unique characters or not.
+
+For example, given the linked list:
+
+Input: "hello" -> "world" -> "openai" -> "unique"
+
+The expected output would be:
+
+Output: true -> false -> true -> true
+
+Explanation:
+
+The string "hello" contains duplicate characters ('l'), so the corresponding boolean value is false.
+The string "world" contains duplicate characters ('o'), so the corresponding boolean value is false.
+The string "openai" contains only unique characters, so the corresponding boolean value is true.
+The string "unique" contains only unique characters, so the corresponding boolean value is true.

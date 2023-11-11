@@ -1,0 +1,8 @@
+Input: hello world hoord
+string to be removed: or
+
+Output: hello wld hod
+
+hello world
+he
+or

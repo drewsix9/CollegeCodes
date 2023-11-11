@@ -1,0 +1,14 @@
+Replace All Occurrences Of A Substring In A String With Another Substring
+
+str[] = "the cat chased the mouse.";
+
+replace 'the' with 'that'
+
+Ouput: "that cat chased that mouse.";
+
+
+the cat chased the mouse
+the
+that
+
+that cat chased that mouse

@@ -1,0 +1,4 @@
+Ask for a base number. When another number is being inserted, insert it in front when the number is lesser than the starting number, else if the number is greater than the ending number then put it in the back, else the number will not be stored.  
+
+1 Option is to clear all non prime numbers 
+1 Option is to clear all prime numbers.

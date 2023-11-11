@@ -1,0 +1,5 @@
+Collatz sequence: The Collatz sequence is a sequence of positive integers 
+that starts with any positive integer and repeatedly applies a simple rule: 
+if the number is even, divide it by 2, 
+and if it is odd, multiply it by 3 and add 1. 
+The conjecture that every starting number eventually reaches 1 is one of the most famous unsolved problems in mathematics.

@@ -1,0 +1,7 @@
+Input: hello hi hi world
+
+Output: olleh hi hi dlrow
+
+REVERSE the word if it has not repeated.
+
+STRICTLY inputing of inputs must be done once

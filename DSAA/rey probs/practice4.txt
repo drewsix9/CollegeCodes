@@ -1,0 +1,7 @@
+Create a singly link list that each node will store the following.
+
+- data (1st data)
+- greatest common factor of the 1st data and the 1st data of the next node (2nd data)
+-the address of the next number (3rd data) 
+
+1 option is to print out the the data and the 2nd data of the node, only if the 2nd data or the gcf data is a prime number

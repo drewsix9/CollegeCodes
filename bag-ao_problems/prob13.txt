@@ -1,0 +1,12 @@
+Suwayi daw ni Dan haha kung wakay lingaw
+
+Enter no. of inputs
+Enter number
+
+-Choice 1:
+A. Only Prime
+B. Only Composite
+
+-Choice 2:
+A. Arrange Ascending
+B. Arrange Descending

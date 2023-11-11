@@ -1,0 +1,10 @@
+Write a C program that takes in a string as input and prints the longest substring that does not contain any repeated characters.
+
+For example, if the input string is "abcabcbb", the longest substring without repeated characters is "abc".
+
+abcabcbb
+i  j
+
+b
+
+

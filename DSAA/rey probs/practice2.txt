@@ -1,0 +1,23 @@
+Christian Rey
+Create a 2 queue, one is for binary numbers whose decimal values are prime, one queue are decimal numbers that are composite. The program will determine where the numbers should be queued.
+
+The program will create a choice on what number to pin, meaning if the number is chosen it will be moved at the last and considered first to view. 
+
+The program will automatically determine, if the number to pin, is on the first queue or second queue. 
+
+The queue is from last to first view.
+
+Example assuming that the numbers are already queued individually: 
+
+Queue A: 0011 1011 0101
+Queue B: 20 16 48 
+
+Pin 16
+
+Queue A: 0011 1011 0101 
+Queue B: 16 20 48 
+
+Pin 0101
+
+Queue A: 0101 0011 1011
+Queue B: 16 20 48

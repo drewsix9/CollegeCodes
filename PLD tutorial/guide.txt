@@ -1,0 +1,67 @@
+
+problem number 1 guide:
+
+sayun ra ning number 1, input ka sa size, nya sudlan nimo ang array, then inig print nimo, ang counter varialble 'i' nimo dapat mag sugod sa size-1 unya mag decrement sa i (i--) hangtud i >= 0. Ang pag print ani is tabla raka nag sugod sa pinaka last sa array hangtud sa index 0.
+
+Question: Manong size-1 man mag una?
+
+size = 5;
+array[5] = 5 6 7 8 9
+index =    0 1 2 3 4 
+
+size-1 ta mag una kay mao may index sa pinaka last (which is index 4). If di nato i minus ang size, sa index 5 siya mag print una which has no value.
+
+----------------------------------------------------------------
+
+problem number 2 guide:
+
+1. declare a variable that will hold the size (ex. int size;)
+
+2. scanf ang size
+
+3. declare an array unya ang size is variable size (ex, int array[size]).
+
+4. make a forloop with counter varialbe 'i', that starts with 0 until less than size (ex. for int i=0; i<size; i++)
+
+5. inside the loop is a scanf of array[i]. (ex.  scanf("%d", &array[i]) )
+
+6. make a nested loop, on the outer loop (int i), mu basa from array[0] until the last array. On  the inner loop (int j), mu basa from i + 1 (kung unsay na array si outer loop, ang inner loop is ang sunod sa array ni outerloop, mao ng "i + 1") 
+
+7. Sulod sa inner loop, ana na mag compare, if(array[i] > array[j]). then sulod ana nga if statement, mao na tung swap nimo sila, manong i swap? kay i arrange mn nato in ascending, dapat ang mauna sa array is gamay then sa last na array element is ang pinaka dako.
+
+8. Mao ni ang pag swap sa values
+     temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+// declare una ug (int temp) sa gawas sa nested loop
+
+9. then after ana is ang pag print na sa sorted array.
+    printf("%d ", array[i]) <-- i sulod ni sa for loop.
+//dapat after sa %d butngan nimo ug space para naay space each element na imo gi print.
+
+----------------------------------------------------------------
+
+problem number 3 guide:
+
+1. declare a variable that will hold the size (ex. int size;)
+
+2. scanf size
+
+3. declare an array unya ang size is variable size (ex, int     array[size]).
+
+4. make a forloop with counter variable 'i', that starts with 0 until less than size (ex. for int i=0; i<size; i++)
+
+5. sulod sa forloop is ang pag scanf sa &array[i]
+// take note sudlan nato ang array[i] gamit sa maglihok2 na variable 'i'. Basta array mag sugod gyud na ug ihap sa 0, DILE 1
+
+6. after sa paginput nimo sa arrays, declare nasad ka ug variable na mu hold sa imong sum. (int sum=0)
+// dapat ideclare nimo ang sum with the value 0 gyud, kay if dile ma logic error na imong code.
+
+7. make a another forloop with counter variable 'i', that starts with 0 until less than size (ex. for int i=0; i<size; i++)
+sulod ani na loop is ang pag sum na sa each element of the array
+(sum = sum + array[i];)
+
+8. THen mag print na sa sum.
+printf("sum = %d",sum);
+
+----------------------------------------------------------------

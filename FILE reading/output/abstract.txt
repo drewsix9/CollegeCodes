@@ -1,0 +1,7 @@
+In this study, we investigate the effects of mindfulness meditation on stress and anxiety levels in college students. A total of 100 participants were recruited from a local university and randomly assigned to either a mindfulness meditation group or a control group. The mindfulness meditation group received eight weeks of guided meditation sessions, while the control group did not receive any intervention.
+
+We measured stress and anxiety levels using self-report questionnaires at baseline, four weeks, and eight weeks. We also collected physiological data, including heart rate variability and cortisol levels, at each time point.
+
+Our results showed that the mindfulness meditation group had significantly lower levels of stress and anxiety compared to the control group at both four and eight weeks. Additionally, the mindfulness meditation group had higher heart rate variability and lower cortisol levels, indicating a more relaxed physiological state.
+
+These findings suggest that mindfulness meditation may be an effective intervention for reducing stress and anxiety in college students. Further research is needed to explore the long-term effects of mindfulness meditation and to determine the optimal duration and frequency of meditation sessions.

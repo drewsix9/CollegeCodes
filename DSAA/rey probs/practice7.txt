@@ -1,0 +1,10 @@
+Problem:
+You are given a linked list where each node contains a character. Your task is to write a function that rearranges the linked list such that all the vowels (a, e, i, o, u) appear before the consonants. Additionally, the order of the vowels and consonants should be maintained.
+
+For example, given the linked list: 'a' -> 'b' -> 'e' -> 'i' -> 'o' -> 'u' -> 'd' -> 'f'
+
+The rearranged linked list should be: 'a' -> 'e' -> 'i' -> 'o' -> 'u' -> 'b' -> 'd' -> 'f'
+
+Given the linked list: 'b' -> 'c' -> 'a' -> 'd' -> 'e' -> 'i' -> 'o' -> 'u' -> 'f'
+
+The rearranged linked list should be: 'a' -> 'e' -> 'i' -> 'o' -> 'u' -> 'b' -> 'c' -> 'd' -> 'f'

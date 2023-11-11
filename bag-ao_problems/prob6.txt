@@ -1,0 +1,23 @@
+Focus lang tas words nga nag start from A to E (or if kaya from down to Z haha). 
+Mag type kog words then e arrange nimo according to the first letter only hahaha. So A to E (or to Z) haha
+
+
+d a n   m a t h e w  
+0 1 2 3 4 5 6 7 8 9 10
+
+g  a  m  a  l  e
+11 12 13 14 15 16
+
+dgm
+
+letter = d
+count = 3
+pos = 0
+
+letter = g
+count = 6
+pos = 11
+
+letter = m
+count = 6
+pos = 4

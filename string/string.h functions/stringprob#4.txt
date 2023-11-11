@@ -1,0 +1,8 @@
+Write a C program that takes an array of strings as input and finds the string with the most vowels. Your program should output the string with the most vowels and the number of vowels in that string.
+For example, if the input array of strings is {"apple", "banana", "cherry", "date"}, the string with the most vowels is "banana", which has 3 vowels. Your program should output "banana" and "3".
+
+4
+apple
+banana
+cherry
+date

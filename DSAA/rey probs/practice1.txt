@@ -1,0 +1,8 @@
+Create a 2 stack, 
+
+One stack will accept a binary number
+The other stack will accept an octal number and should not be a binary number
+
+The display should display its decimal value. One option should display the decimal values of binary. The other is decimal values of octal numbers.
+
+Optional: The number will be void and replaced, if there is an octal and binary number whose decimal values are the same.

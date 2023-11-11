@@ -1,0 +1,12 @@
+Write a C program that takes an array of strings as input and finds the longest common suffix of all the strings in the array. Your program should output the longest common suffix.
+For example, if the input array of strings is {"apple", "pineapple", "orangeapple"}, the longest common suffix is "apple". If there is no common suffix, your program should output "No common suffix!".
+
+3
+orangeapple
+pinepepele
+apple
+
+
+
+
+

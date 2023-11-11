@@ -1,0 +1,13 @@
+Write a C program that takes an array of strings as input and removes all duplicate strings from the array. Your program should output the resulting array of strings with duplicates removed.
+For example, if the input array of strings is {"apple", "banana", "cherry", "apple", "date", "banana"}, the resulting array of strings with duplicates removed should be {"apple", "banana", "cherry", "date"}.
+Your program should preserve the order of the strings in the input array. If there are no duplicates in the input array, your program should output the original array of strings.
+
+6
+apple
+banana
+cherry
+apple
+date
+banana
+
+banana date apple cherry banana apple

@@ -1,0 +1,6 @@
+Write a program that removes the duplicate letter of each word from a string entered by the user.
+
+Input: abcc efffgh ijkli
+Output: abc efgh ijkl
+
+ccba hgfffe ilkji

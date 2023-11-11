@@ -1,0 +1,7 @@
+reverse the word if it contains double same vowel letter
+
+input: hello wooorld book
+
+output: hello wooorld koob
+
+

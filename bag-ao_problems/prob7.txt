@@ -1,0 +1,5 @@
+Write a program that reads in a string of words from the user, and outputs the length of longest word that contains only unique characters and the word itself.
+
+feabb abcde ccad
+
+Output: 5 abcd

@@ -1,0 +1,20 @@
+Write a C program that takes an array of strings as input and checks if each string contains a given substring. (better if dynamically allocated ang array of strings).
+
+Here's an example of what your program's output should look like:
+
+enter number of strings: 3
+
+Input array of strings:
+string1: Hello world
+string2: How are you today?
+string3: I'm doing well, thank you.
+
+substring: "you"
+
+Output:
+The substring "you" was NOT found in string "Hello world".
+The substring "you" was found in string "How are you today?" at index: 8
+The substring "you" was found in string "I'm doing well, thank you." at index: 22
+
+
+Note that the output should indicate which strings contain the substring, which ones do not and at which index was the substring found.Good luck!

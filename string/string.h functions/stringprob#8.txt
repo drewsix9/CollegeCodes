@@ -1,0 +1,10 @@
+Write a C program that takes an array of strings as input and finds the string with the highest number of non-repeating characters. Your program should output the string with the highest number of non-repeating characters and the number of non-repeating characters.
+
+For example, if the input array of strings is {"apple", "banana", "cherry", "date"}, the string with the highest number of non-repeating characters is "cherry", which has 5 non-repeating characters ("c", "h", "e", "r", and "y"). Your program should output "cherry" and "5".
+
+apple
+banana
+cherry
+date
+
+apple

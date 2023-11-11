@@ -1,0 +1,8 @@
+Your program will consist of 3 data; 2 int data type and 1 address. 
+
+Your program will ask for 3 numbers of each set. The program will determine the largest prime number (output A), and the smallest composite (output B). If there is no composite number found, multiply the largest and the smallest prime number (output B). If there is no prime number found, then determine the largest composite, then determine the nearest higher value prime number (output A).
+ 
+Output A - First Data 
+Output B - Second Data
+
+Option if a singular node has similar prime data to node X and similar composite data to node Y (such that X may equal to Y). The node will be removed.

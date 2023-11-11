@@ -1,0 +1,4 @@
+Enter input :101 1111 1010
+Output: 5 15 10
+
+STRICTLY inputing of inputs must be done once

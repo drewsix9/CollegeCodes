@@ -1,0 +1,13 @@
+Write a C program that takes an array of strings as input and finds the longest common prefix among the strings. The longest common prefix is the longest string that is a prefix of all the strings in the array.
+
+For example, if the input array of strings is {"apple", "app", "apartment", "application"}, the longest common prefix is "ap".
+Your program should output the longest common prefix as a string. 
+
+If there is no common prefix among the strings, your program should output "No common prefix".
+
+4
+apple
+app
+apartment
+application
+

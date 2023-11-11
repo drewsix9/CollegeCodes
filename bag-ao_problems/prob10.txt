@@ -1,0 +1,5 @@
+The program will ask for a numbers and end when 0 is entered.
+
+Choice A: In Ascending, print the factors of largest number. Factors that are already input in the program only.
+
+Choice B: In Descending, basing from the smallest number. Print the number if the smallest number is a factor to that number.

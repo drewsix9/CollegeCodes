@@ -1,0 +1,31 @@
+Kuan mag enter og number of sets for example 
+Gwenn
+Tristan
+Andre
+Then eh compare niya ang sets if asa nila ang naay same nga letter like ang set nga nas example is naay common letter nga n so wad on niya ang letter n so ang output is
+Gwe
+Trista
+Adre
+
+Minimize
+Civilization
+Initial
+Digital
+Invincible
+
+minimize
+civilization
+initial
+digital
+invincible
+
+serendipity
+mellifluous
+ephemeral
+luminous
+petrichor
+ethereal
+ineffable
+halcyon
+supine
+solitude
