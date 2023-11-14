@@ -17,7 +17,9 @@ public:
   int getHeight(Node *);
   bool isBal(Node *);
   int getBF(Node *);
-  void rotate(Node *);
+  Node *rotate(Node *);
+  Node *LLimBalance(Node *);
+  Node *RRimBalance(Node *);
 };
 
 int main() {
@@ -39,7 +41,7 @@ int main() {
       break;
     }
     tree.display(tree.root, 10);
-    cout << "\nBalanced?: " << boolalpha << tree.isBal(tree.root);
+    // cout << "\nBalanced?: " << boolalpha << tree.isBal(tree.root);
   }
 }
 
@@ -58,6 +60,7 @@ void AVLTree::insert(Node *&n, int d) {
     return;
   }
   if (!isBal(n)) {
+    n = rotate(n);
   }
 }
 
@@ -94,10 +97,47 @@ bool AVLTree::isBal(Node *n) {
   return ((bf <= 1) ? true : false);
 }
 
-void AVLTree::rotate(Node *) {
-  // LL / RR imbalance
-  if () {
+AVLTree::Node *AVLTree::LLimBalance(Node *n) {
+  Node *newPivot = n->left;
+  n->left = nullptr;
+  n->right = nullptr;
+  newPivot->right = n;
+  return newPivot;
+}
 
-  } else if () {
+AVLTree::Node *AVLTree::RRimBalance(Node *n) {
+  Node *newPivot = n->right;
+  n->right = nullptr;
+  n->right = nullptr;
+  newPivot->left = n;
+  return newPivot;
+}
+
+AVLTree::Node *AVLTree::rotate(Node *n) {
+  // left Heavy
+  if (getBF(n) >= 2) {
+    if (getBF(n->left) >= 1) {
+      // LL imbalance
+      cout << "\nLL imbalance";
+      return LLimBalance(n);
+    } else {
+      // LR imbalance
+      cout << "\nLR imbalance";
+      n->left = RRimBalance(n->left);
+      return LLimBalance(n);
+    }
+  }
+  // Right Heavy
+  else if (getBF(n) <= -2) {
+    if (getBF(n->right) <= -1) {
+      // RR imbalance
+      cout << "\nRR imbalance";
+      return RRimBalance(n);
+    } else {
+      // RL imbalance
+      cout << "\nRL imbalance";
+      n->right = LLimBalance(n->right);
+      return RRimBalance(n);
+    }
   }
 }
