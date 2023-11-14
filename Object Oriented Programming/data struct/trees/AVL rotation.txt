@@ -1,0 +1,23 @@
+In AVL tree rotations, we determine whether a subtree is in a Left-Left (LL), Right-Right (RR), Left-Right (LR), or Right-Left (RL) imbalance based on the structure and balance factors of the nodes involved.
+
+In an AVL tree, each node has a balance factor associated with it, which represents the difference in height between its left and right subtrees. The balance factor can be -1, 0, or 1, indicating whether the subtree is balanced, leaning to the left, or leaning to the right, respectively.
+
+When performing rotations to rebalance the tree, we consider the balance factors of three nodes: the pivot node (the node being rotated), its left child (if it exists), and its right child (if it exists). Here's how we determine the imbalance type:
+
+1. LL Imbalance:
+   - The pivot node has a balance factor of 2 (leaning to the right).
+   - The left child of the pivot node has a balance factor of 1 (also leaning to the right).
+
+2. RR Imbalance:
+   - The pivot node has a balance factor of -2 (leaning to the left).
+   - The right child of the pivot node has a balance factor of -1 (also leaning to the left).
+
+3. LR Imbalance:
+   - The pivot node has a balance factor of 2 (leaning to the right).
+   - The left child of the pivot node has a balance factor of -1 (leaning to the left).
+
+4. RL Imbalance:
+   - The pivot node has a balance factor of -2 (leaning to the left).
+   - The right child of the pivot node has a balance factor of 1 (leaning to the right).
+
+Note that these conditions are specific to AVL tree rotations. In other types of self-balancing trees, such as Red-Black trees, the imbalance types and conditions may be different.
