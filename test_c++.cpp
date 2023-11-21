@@ -1,9 +1,8 @@
-#include <algorithm>
 #include <iostream>
 
 using namespace std;
 
-class AVLTree {
+class AVL {
 public:
   class Node {
   public:
@@ -12,18 +11,20 @@ public:
     int height;
     Node(int d) : val(d), left(nullptr), right(nullptr), height(1) {}
   };
+
   Node *root;
-  AVLTree() : root(nullptr) {}
+  AVL() : root(nullptr) {}
+
   void insert(Node *&n, int d);
-  int getHeight(Node *n) { return (n ? n->height : 0); }
   int getBF(Node *n);
-  void display(Node *n, int spaces);
+  int getHeight(Node *n);
+  void display(Node *n, int space);
   Node *rotateLeft(Node *n);
   Node *rotateRight(Node *n);
 };
 
 int main() {
-  AVLTree tree;
+  AVL tree;
   int n, c;
   while (1) {
     cout << "\n[0] - Exit\n[1] - Insert\n[2] - Get Height\nEnter choice: ";
@@ -41,11 +42,10 @@ int main() {
       break;
     }
     tree.display(tree.root, 10);
-    // cout << "\nBalanced?: " << boolalpha << tree.isBal(tree.root);
   }
 }
 
-void AVLTree::insert(Node *&n, int d) {
+void AVL::insert(Node *&n, int d) {
   if (!n) {
     n = new Node(d);
     return;
@@ -55,82 +55,86 @@ void AVLTree::insert(Node *&n, int d) {
   } else if (d > n->val) {
     insert(n->right, d);
   } else {
-    cout << "\nvalue already in tree!";
-    return;
+    cout << "\nValue already in tree.";
   }
 
-  n->height = 1 + max(getHeight(n->left), getHeight(n->right));
+  // update height
+  n->height = max(getHeight(n->left), getHeight(n->right)) + 1;
+
+  // insert check if balance here
   int bf = getBF(n);
   if (bf > 1) {
     if (d < n->left->val) {
-      // LL imbalance
+      // LL
       n = rotateRight(n);
     } else if (d > n->left->val) {
-      // LR imbalance
+      // LR
       n->left = rotateLeft(n->left);
       n = rotateRight(n);
     }
   }
   if (bf < -1) {
     if (d > n->right->val) {
-      // RR imbalance
+      // RR
       n = rotateLeft(n);
     } else if (d < n->right->val) {
-      // RL imbalance
+      // Rl
       n->right = rotateRight(n->right);
       n = rotateLeft(n);
     }
   }
 }
 
-int AVLTree::getBF(Node *n) {
-  if (!n) {
-    return 0;
-  }
+int AVL::getBF(Node *n) {
   return getHeight(n->left) - getHeight(n->right);
 }
 
-void AVLTree::display(Node *n, int spaces) {
+int AVL::getHeight(Node *n) {
+  if (!n) {
+    return 0;
+  }
+  return n->height;
+}
+
+void AVL::display(Node *n, int space) {
   if (!n) {
     return;
   }
-  display(n->right, spaces + 10);
+  display(n->right, space + 10);
   cout << endl;
-  for (int i = 10; i < spaces; i++) {
+  for (int i = 10; i < space; i++) {
     cout << " ";
   }
   cout << n->val << endl;
-  display(n->left, spaces + 10);
+  display(n->left, space + 10);
 }
 
-AVLTree::Node *AVLTree::rotateRight(Node *y) {
-  Node *x = y->left;
-  Node *T2 = x->right;
-
-  // Perform rotation
-  x->right = y;
-  y->left = T2;
-
-  // Update heights
-  y->height = 1 + max(getHeight(y->left), getHeight(y->right));
-  x->height = 1 + max(getHeight(x->left), getHeight(x->right));
-
-  // Return new root
-  return x;
+AVL::Node *AVL::rotateLeft(Node *n) {
+  cout << "\nrotating : " << n->val;
+  Node *newPivot = n->right;
+  Node *T1 = newPivot->left;
+  // performing rotation
+  n->right = nullptr;
+  newPivot->left = n;
+  n->right = T1;
+  // update heights
+  n->height = 1 + max(getHeight(n->left), getHeight(n->right));
+  newPivot->height = 1 + max(getHeight(newPivot->left), getHeight(newPivot->right));
+  // return newpivot
+  return newPivot;
 }
 
-AVLTree::Node *AVLTree::rotateLeft(Node *x) {
-  Node *y = x->right;
-  Node *T2 = y->left;
-
-  // Perform rotation
-  y->left = x;
-  x->right = T2;
-
-  // Update heights
-  x->height = 1 + max(getHeight(x->left), getHeight(x->right));
-  y->height = 1 + max(getHeight(y->left), getHeight(y->right));
-
-  // Return new root
-  return y;
+AVL::Node *AVL::rotateRight(Node *n) {
+  cout << "\nrotating : " << n->val;
+  Node *newPivot = n->left;
+  Node *T2 = newPivot->right;
+  // performing rotation
+  n->left = nullptr;
+  newPivot->right = n;
+  n->left = T2;
+  // update heights
+  n->height = 1 + max(getHeight(n->left), getHeight(n->right));
+  newPivot->height = 1 + max(getHeight(newPivot->left), getHeight(newPivot->right));
+  // return newpivot
+  return newPivot;
 }

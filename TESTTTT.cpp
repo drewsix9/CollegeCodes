@@ -2,145 +2,115 @@
 
 using namespace std;
 
-class AVLTree {
-private:
-  struct Node {
-    int key;
-    Node *left;
-    Node *right;
+class AVL {
+public:
+  class Node {
+  public:
+    int val;
+    Node *left, *right;
     int height;
+    Node(int d) : val(d), left(nullptr), right(nullptr), height(1) {}
   };
 
-  int getHeight(Node *node) {
-    if (node == nullptr)
-      return 0;
-    return node->height;
-  }
-
-  int getBalanceFactor(Node *node) {
-    if (node == nullptr)
-      return 0;
-    return getHeight(node->left) - getHeight(node->right);
-  }
-
-  Node *rotateRight(Node *y) {
-    Node *x = y->left;
-    Node *T2 = x->right;
-
-    x->right = y;
-    y->left = T2;
-
-    y->height = std::max(getHeight(y->left), getHeight(y->right)) + 1;
-    x->height = std::max(getHeight(x->left), getHeight(x->right)) + 1;
-
-    return x;
-  }
-
-  Node *rotateLeft(Node *x) {
-    Node *y = x->right;
-    Node *T2 = y->left;
-
-    y->left = x;
-    x->right = T2;
-
-    x->height = std::max(getHeight(x->left), getHeight(x->right)) + 1;
-    y->height = std::max(getHeight(y->left), getHeight(y->right)) + 1;
-
-    return y;
-  }
-
-  Node *insertNode(Node *node, int key) {
-    if (node == nullptr) {
-      Node *newNode = new Node();
-      newNode->key = key;
-      newNode->left = nullptr;
-      newNode->right = nullptr;
-      newNode->height = 1;
-      return newNode;
-    }
-
-    if (key < node->key)
-      node->left = insertNode(node->left, key);
-    else if (key > node->key)
-      node->right = insertNode(node->right, key);
-    else
-      return node; // Duplicate keys not allowed
-
-    node->height = 1 + std::max(getHeight(node->left), getHeight(node->right));
-    int balanceFactor = getBalanceFactor(node);
-
-    if (balanceFactor > 1) {
-      if (key < node->left->key)
-        return rotateRight(node);
-      else if (key > node->left->key) {
-        node->left = rotateLeft(node->left);
-        return rotateRight(node);
-      }
-    }
-
-    if (balanceFactor < -1) {
-      if (key > node->right->key)
-        return rotateLeft(node);
-      else if (key < node->right->key) {
-        node->right = rotateRight(node->right);
-        return rotateLeft(node);
-      }
-    }
-
-    return node;
-  }
-
-  void preOrderTraversal(Node *node) {
-    if (node != nullptr) {
-      std::cout << node->key << " ";
-      preOrderTraversal(node->left);
-      preOrderTraversal(node->right);
-    }
-  }
-
-public:
   Node *root;
+  AVL() : root(nullptr) {}
 
-  AVLTree() {
-    root = nullptr;
-  }
-
-  void insert(int key) {
-    root = insertNode(root, key);
-  }
-
-  void printPreOrder() {
-    preOrderTraversal(root);
-    std::cout << std::endl;
-  }
-
-  void display(Node *n, int spaces) {
-    if (!n) {
-      return;
-    }
-    display(n->right, spaces + 10);
-    cout << endl;
-    for (int i = 10; i < spaces; i++) {
-      cout << " ";
-    }
-    cout << n->key << endl;
-    display(n->left, spaces + 10);
-  }
+  void insert(Node *&n, int d);
+  int getBF(Node *n);
+  int getHeight(Node *n);
+  void display(Node *n, int space);
+  Node *rotateLeft(Node *n);
+  Node *rotateRight(Node *n);
 };
 
 int main() {
-  AVLTree avlTree;
+  AVL tree;
 
-  avlTree.insert(40);
-  avlTree.insert(20);
-  avlTree.insert(10);
-  avlTree.insert(25);
-  avlTree.insert(30);
-  avlTree.insert(22);
-  avlTree.insert(50);
+  for (int i = 0; i < 10; i++) {
+    int n = rand() % 100;
+    tree.insert(tree.root, n);
+  }
+  tree.display(tree.root, 10);
+}
 
-  std::cout << "Preorder traversal of the constructed AVL tree: ";
-  avlTree.display(avlTree.root, 10);
+void AVL::insert(Node *&n, int d) {
+  if (!n) {
+    n = new Node(d);
+    return;
+  }
+  if (d < n->val) {
+    insert(n->left, d);
+  } else if (d > n->val) {
+    insert(n->right, d);
+  } else {
+    cout << "\nValue already in tree.";
+  }
 
-  return 0;
+  // update height
+  n->height = max(getHeight(n->left), getHeight(n->right)) + 1;
+
+  // insert check if balance here
+  int bf = getBF(n);
+  if (bf > 1) {
+    if (d < n->left->val) {
+      // LL
+      n = rotateRight(n);
+    } else if (d > n->left->val) {
+      // LR
+      n->left = rotateLeft(n->left);
+      n = rotateRight(n);
+    }
+  }
+  if (bf < -1) {
+    if (d > n->right->val) {
+      // RR
+      n = rotateLeft(n);
+    } else if (d < n->right->val) {
+      // Rl
+      n->right = rotateRight(n->right);
+      n = rotateLeft(n);
+    }
+  }
+}
+
+int AVL::getBF(Node *n) {
+  return getHeight(n->left) - getHeight(n->right);
+}
+
+int AVL::getHeight(Node *n) {
+  if (!n) {
+    return 0;
+  }
+  return n->height;
+}
+
+void AVL::display(Node *n, int space) {
+  if (!n) {
+    return;
+  }
+  display(n->right, space + 10);
+  cout << endl;
+  for (int i = 10; i < space; i++) {
+    cout << " ";
+  }
+  cout << n->val << endl;
+  display(n->left, space + 10);
+}
+
+AVL::Node *AVL::rotateLeft(Node *n) {
+  Node *newPivot = n->right;
+  Node *T1 = newPivot->left;
+  n->right = nullptr;
+  newPivot->left = n;
+  n->right = T1;
+  return n;
+}
+
+AVL::Node *AVL::rotateRight(Node *n) {
+  Node *newPivot = n->left;
+  Node *T2 = newPivot->right;
+  n->left = nullptr;
+  newPivot->right = n;
+  n->left = T2;
+  return n;
 }
