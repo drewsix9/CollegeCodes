@@ -68,12 +68,10 @@ public:
     if (!node) {
       return;
     }
-
     if (node->left) {
       nodeMap[node->left] = node;
       mapping(node->left, nodeMap);
     }
-
     if (node->right) {
       nodeMap[node->right] = node;
       mapping(node->right, nodeMap);
@@ -205,7 +203,6 @@ void BST::deleteNode(Node *&node, int d) {
   if (!node) {
     return;
   }
-
   if (d < node->data) {
     deleteNode(node->left, d);
   } else if (d > node->data) {
@@ -229,6 +226,7 @@ void BST::deleteNode(Node *&node, int d) {
     } else {
       // Case 4: Node has both left and right children
       Node *minRight = node->right;
+      // takes the minimum node from the right subtree
       while (minRight->left) {
         minRight = minRight->left;
       }
@@ -314,7 +312,7 @@ int BST::size(Node *node) {
   if (!node) {
     return 0;
   }
-  return size(node->left) + 1 + size(node->right);
+  return 1 + size(node->left) + size(node->right);
 }
 
 int BST::minNode(Node *node) {
@@ -328,7 +326,7 @@ int BST::minNode(Node *node) {
 }
 
 int BST::height(Node *node) {
-  return (node == nullptr) ? 0 : max(height(node->left), height(node->right)) + 1;
+  return (!node) ? 0 : 1 + max(height(node->left), height(node->right));
 }
 
 int BST::countLeafNodes(Node *node) {

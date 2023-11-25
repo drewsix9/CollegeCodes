@@ -1,4 +1,5 @@
 #include <iostream>
+#include <time.h>
 #include <vector>
 
 using namespace std;
@@ -30,6 +31,7 @@ public:
   void primeAddens(int n);
   int findPos(vector<int> arr, int val);
   void Traversal(int c);
+  void insertRand();
 
 private:
   void PreOrderRec(Node *n, vector<int> &arr);
@@ -40,6 +42,7 @@ private:
 int main() {
   Tree t;
   int n, c;
+  t.insertRand();
   while (1) {
     cout << "\n[0] - Exit\n[1] - Insert\n[2] - PreOrder\n[3] - InOrder\n[4] - PostOrder\nEnter choice: ";
     cin >> c;
@@ -180,4 +183,12 @@ void Tree::PostOrderRec(Node *n, vector<int> &arr) {
   PostOrderRec(n->left, arr);
   PostOrderRec(n->right, arr);
   arr.push_back(n->val);
+}
+
+void Tree::insertRand() {
+  srand(time(nullptr));
+  for (int i = 0; i < 10; i++) {
+    int n = 1 + (rand() % 50);
+    this->insert(this->root, n);
+  }
 }
