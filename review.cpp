@@ -1,30 +1,48 @@
-#include <stdio.h>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void rotated(vector<vector<int>> &arr);
+void display(const vector<vector<int>> &arr);
+
 int main() {
-
-  // declare variables and array
-  int n, i;
-  float num[100], sum = 0.0;
-
-  // input number of elements
-  printf("Enter the number of elements: ");
-  scanf("%d", &n);
-  while (n > 100 || n < 1) {
-    printf("ERROR! The number should in range of (1 to 100). \n");
-    printf("Enter the number of elements again: ");
-    scanf("%d", &n);
+  int row, col;
+  cout << "Enter the number of rows and columns: ";
+  cin >> row >> col;
+  vector<vector<int>> arr(row, vector<int>(col));
+  cout << "Enter the elements of the array:\n";
+  for (int i = 0; i < row; i++) {
+    for (int j = 0; j < col; j++) {
+      cin >> arr[i][j];
+    }
   }
-
-  // input values per array element
-  for (i = 0; i < n; i++) {
-    printf("Enter value for element %d: ", i);
-    scanf("%f", &num[i]);
-    sum += num[i]; // sum = sum + num[i]|
-  }
-
-  // Sum of all values entered
-  printf("The sum of array is: %.2f", sum);
-
-  // Average of all values entered
-  printf("\nThe average of array is: %.2f ", sum / n);
+  cout << "Original Matrix:\n";
+  display(arr);
+  cout << "Rotated Matrix:\n";
+  rotated(arr);
   return 0;
+}
+
+void rotated(vector<vector<int>> &arr) {
+  int row = arr.size();
+  int col = arr[0].size();
+  vector<vector<int>> rotated(col, vector<int>(row));
+  for (size_t i = rotated.size() - 1; i >= 0; i--) {
+    for (size_t j = 0; j < rotated[0].size(); j++) {
+      rotated[i][j] = arr[j][i];
+    }
+  }
+  display(rotated);
+}
+
+void display(const vector<vector<int>> &arr) {
+  int row = arr.size();
+  int col = arr[0].size();
+  for (int i = 0; i < row; i++) {
+    for (int j = 0; j < col; j++) {
+      cout << arr[i][j] << " ";
+    }
+    cout << endl;
+  }
 }
