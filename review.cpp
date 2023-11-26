@@ -1,54 +1,30 @@
-#include <iostream>
-
-using namespace std;
-
-class Tree {
-public:
-  class Node {
-  public:
-    int val;
-    Node *left, *right;
-    Node(int d) : val(d), left(nullptr), right(nullptr) {}
-  };
-  Node *root;
-  Tree() : root(nullptr) {}
-  void insert(Node *&n, int d);
-  void display(Node *n, int space) const;
-};
-
+#include <stdio.h>
 int main() {
-  Tree t;
-  srand(time(nullptr));
-  for (int i = 0; i < 10; i++) {
-    int n = (rand() % 20) + 1;
-    t.insert(t.root, n);
-  }
-  t.display(t.root, 10);
-}
 
-void Tree::insert(Node *&n, int d) {
-  if (!n) {
-    n = new Node(d);
-    return;
-  }
-  if (d < n->val) {
-    insert(n->left, d);
-  } else if (d > n->val) {
-    insert(n->right, d);
-  } else {
-    cout << d << " alread in tree";
-  }
-}
+  // declare variables and array
+  int n, i;
+  float num[100], sum = 0.0;
 
-void Tree::display(Node *n, int space) const {
-  if (!n) {
-    return;
+  // input number of elements
+  printf("Enter the number of elements: ");
+  scanf("%d", &n);
+  while (n > 100 || n < 1) {
+    printf("ERROR! The number should in range of (1 to 100). \n");
+    printf("Enter the number of elements again: ");
+    scanf("%d", &n);
   }
-  display(n->right, space + 10);
-  cout << endl;
-  for (int i = 10; i < space; i++) {
-    cout << " ";
+
+  // input values per array element
+  for (i = 0; i < n; i++) {
+    printf("Enter value for element %d: ", i);
+    scanf("%f", &num[i]);
+    sum += num[i]; // sum = sum + num[i]|
   }
-  cout << n->val << endl;
-  display(n->left, space + 10);
+
+  // Sum of all values entered
+  printf("The sum of array is: %.2f", sum);
+
+  // Average of all values entered
+  printf("\nThe average of array is: %.2f ", sum / n);
+  return 0;
 }
