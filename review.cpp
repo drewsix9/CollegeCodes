@@ -1,7 +1,27 @@
-#include "myHeaderFiles/BaseN.h"
 #include <iostream>
 
 using namespace std;
+
+bool isBinary(int n) {
+  while (n > 0) {
+    if (n % 10 > 1) {
+      return false;
+    }
+    n /= 10;
+  }
+  return true;
+}
+
+int BintoDeci(int n) {
+  int sum = 0, pow = 1, prod = 0;
+  while (n > 0) {
+    prod = n % 10 * pow;
+    pow *= 2;
+    sum += prod;
+    n /= 10;
+  }
+  return sum;
+}
 
 class Stack {
 private:
@@ -19,6 +39,9 @@ public:
   void pop();
   void displayBinary();
   void displayDecimal();
+  void increaseCapacity();
+  int getCapacity() { return this->capacity; }
+  int getSize() { return this->size; }
 };
 
 int main() {
@@ -31,6 +54,8 @@ int main() {
     cout << "\n[2] - Pop";
     cout << "\n[3] - Display Binary";
     cout << "\n[4] - Display Decimal of Binary";
+    cout << "\n[5] - Display Stack Capacity";
+    cout << "\n[6] - Display Stack Size";
     cout << "\nChoose operation : ";
     cin >> c;
     switch (c) {
@@ -55,6 +80,12 @@ int main() {
     case 4:
       stk.displayDecimal();
       break;
+    case 5:
+      cout << "\nCapacity: " << stk.getCapacity();
+      break;
+    case 6:
+      cout << "\nSize: " << stk.getSize();
+      break;
     default:
       break;
     }
@@ -64,9 +95,7 @@ int main() {
 void Stack::insert(int d) {
   size++;
   if (size >= capacity) {
-    cout << "\n[WARNING] Stack is full\n";
-    size--;
-    return;
+    increaseCapacity();
   }
   arr[size] = d;
 }
@@ -91,4 +120,15 @@ void Stack::displayDecimal() {
   for (int i = 0; i <= this->size; i++) {
     cout << BintoDeci(arr[i]) << " ";
   }
+}
+
+void Stack::increaseCapacity() {
+  capacity *= 2;
+  int *newArr = new int[capacity];
+  for (int i = 0; i < capacity / 2; i++) {
+    newArr[i] = arr[i];
+  }
+  delete[] arr;
+  arr = newArr;
+  cout << "\nCapacity increased";
 }
