@@ -176,15 +176,18 @@ void BSTtree::deleteNode(Node *&n, string d) {
     deleteNode(n->right, d);
   } else {
     if (!n->left && !n->right) { // case 1: has no child
+      delete n;
       n = nullptr;
     } else if (n->left && !n->right) { // case 2: has left child but no right child
-      n->val = n->left->val;
-      delete n->left;
-      n->left = nullptr;
+      Node *temp = n;
+      n = n->left;
+      delete temp;
+      temp = nullptr;
     } else if (!n->left && n->right) { // case 3: has right child but no left child
-      n->val = n->right->val;
-      delete n->right;
-      n->right = nullptr;
+      Node *temp = n;
+      n = n->right;
+      delete temp;
+      temp = nullptr;
     } else { // case 4: has both left and right child
       Node *minRight = n->right;
       while (minRight->left) {
