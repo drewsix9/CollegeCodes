@@ -179,7 +179,6 @@ void BST::Traversal(int c) {
   case 5:
     cout << "\nIn-order Traversal: ";
     myInorder_Rec(root, 1, false);
-
     break;
   case 6:
     cout << "\nPost-order Traversal: ";
