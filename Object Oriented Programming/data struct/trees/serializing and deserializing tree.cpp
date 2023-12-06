@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -80,29 +78,3 @@ public:
     return current;
   }
 };
-
-int main() {
-  BinaryTree tree;
-
-  tree.insert(50);
-  tree.insert(30);
-  tree.insert(20);
-  tree.insert(40);
-  tree.insert(70);
-  tree.insert(60);
-  tree.insert(80);
-
-  std::cout << "Inorder Traversal: ";
-  tree.inorderTraversal();
-  std::cout << std::endl;
-
-  std::cout << "Search 40: " << (tree.search(40) ? "Found" : "Not Found") << std::endl;
-  std::cout << "Search 90: " << (tree.search(90) ? "Found" : "Not Found") << std::endl;
-
-  tree.deleteNode(40);
-  std::cout << "Inorder Traversal after deleting 40: ";
-  tree.inorderTraversal();
-  std::cout << std::endl;
-
-  return 0;
-}
