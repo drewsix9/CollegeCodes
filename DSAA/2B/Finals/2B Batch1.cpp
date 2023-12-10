@@ -1,3 +1,5 @@
+// print prme numbers and composite numbers in a linked list with their positions
+
 #include <bits\stdc++.h>
 #include <primecomp.h>
 

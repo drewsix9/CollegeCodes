@@ -1,3 +1,5 @@
+// sort prime numbers in ascending order and composite numbers in descending order
+
 #include <bits\stdc++.h>
 
 bool isPrime(int num) {
