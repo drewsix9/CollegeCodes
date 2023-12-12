@@ -1,18 +1,11 @@
-
-
-#include <iostream>
-#include <sstream>
-#include <vector>
-
-using namespace std;
-
-int countDig(int n) {
-  if (n <= 0) {
-    return 0;
-  }
-  return 1 + countDig(n / 10);
-}
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int main() {
-  cout << countDig(4316757);
+  char str[100] = "aaaaeeeeiiiioooouuuuu";
+  char *ptr = strchr(str, 'e');
+  int pos = ptr - str;
+  printf("%c[%d]", str[pos], pos);
 }
