@@ -31,6 +31,7 @@ int isBinary(int *arr, int size) {
       num /= 10;
     }
   }
+  return 1;
 }
 
 void printBinary(int *arr, int size) {
