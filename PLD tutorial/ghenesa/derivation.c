@@ -11,7 +11,6 @@ char *derive(char *str, int len) {
     printf("%s\n", token);
     token = strtok(NULL, "+-");
     strcpy(res[n++], token);
-    NewFunction(str, token);
   }
 }
 
