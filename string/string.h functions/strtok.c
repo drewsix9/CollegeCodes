@@ -5,29 +5,27 @@
 #include <string.h>
 #define BUFFER_SIZE 100
 
-int main()
-{
-    char buffer[BUFFER_SIZE];
-    fgets(buffer, BUFFER_SIZE, stdin);
-    char *str = malloc(strlen(buffer) + 1);
-    strcpy(str, buffer);
+int main() {
+  char buffer[BUFFER_SIZE];
+  fgets(buffer, BUFFER_SIZE, stdin);
+  char *str = malloc(strlen(buffer) + 1);
+  strcpy(str, buffer);
 
-    const char *const_str = str;
+  const char *const_str = str;
 
-    char delim[] = " \t\n";           // delimiters are: space, tab, and new line.
-    char *token = strtok(str, delim); // declare strtok outside the loop
-    int count = 0;
+  char delim[] = " \t\n";           // delimiters are: space, tab, and new line.
+  char *token = strtok(str, delim); // declare strtok outside the loop
+  int count = 0;
 
-    while (token != NULL)
-    {
-        count++;
-        printf("%s\n", token);
-        printf("index = %llu\n", token - const_str);
-        token = strtok(NULL, delim); // NULL means to tokenize what was tokenize before
-        printf("\n");
-    }
+  while (token != NULL) {
+    count++;
+    printf("%s\n", token);
+    printf("index = %llu\n", token - const_str);
+    token = strtok(NULL, delim); // NULL means to tokenize what was tokenize before
+    printf("\n");
+  }
 
-    printf("\nsentence has %d words", count);
+  printf("\nsentence has %d words", count);
 
-    return 0;
+  return 0;
 }
