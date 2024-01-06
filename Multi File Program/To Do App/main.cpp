@@ -32,7 +32,7 @@ int main() {
     } else {
       cout << "\nInvalid Input\n";
     }
-    pauseProgram();
+    pauseProgram(); // TODO: improve this
   }
 }
 
