@@ -1,13 +1,13 @@
-
+#define _CRTDBG_MAP_ALLOC
 #include "database.cpp"
 #include "printables.h"
+#include <crtdbg.h>
 #include <iostream>
 
 using namespace std;
 
 void addTask(DataBase &db);
 void deleteTask(DataBase &db);
-void pauseProgram();
 
 int main() {
   DataBase db;
@@ -32,8 +32,8 @@ int main() {
     } else {
       cout << "\nInvalid Input\n";
     }
-    pauseProgram(); // TODO: improve this
   }
+  _CrtDumpMemoryLeaks();
 }
 
 string getUserInput() {
@@ -57,11 +57,4 @@ void deleteTask(DataBase &db) {
   cout << "\nEnter the index of the task you want to delete: ";
   cin >> index;
   db.deleteItem(index - 1);
-}
-
-void pauseProgram() {
-  system("cls");
-  cout << "\nPress Enter to continue...";
-  cin.ignore();
-  cin.get();
 }
