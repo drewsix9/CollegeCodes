@@ -5,9 +5,10 @@ using namespace std;
 class CircularQueue {
 public:
   int head, tail, size, capacity, *arr;
-  CircularQueue();
-  bool isFull();
-  bool isEmpty();
+  CircularQueue();  // constructor
+  ~CircularQueue(); // destructor
+  bool isFull() const;
+  bool isEmpty() const;
   void enqueue(int n);
   void dequeue();
   void printQueue();
@@ -15,18 +16,18 @@ public:
 
 CircularQueue::CircularQueue() {
   cout << "Enter size of queue: ";
-  cin >> this->capacity;
-  this->arr = new int[capacity];
-  this->head = this->tail = 0;
-  this->size = 0;
+  cin >> capacity;
+  arr = new int[capacity];
+  head = tail = 0;
+  size = 0;
 }
 
-bool CircularQueue::isFull() {
-  return this->size == this->capacity;
+bool CircularQueue::isFull() const {
+  return size == capacity;
 }
 
-bool CircularQueue::isEmpty() {
-  return this->size == 0;
+bool CircularQueue::isEmpty() const {
+  return size == 0;
 }
 
 void CircularQueue::enqueue(int n) {
@@ -34,9 +35,10 @@ void CircularQueue::enqueue(int n) {
     cout << "[WARNING] Queue is full" << endl;
     return;
   }
-  this->arr[this->tail] = n;
-  this->tail = (this->tail + 1) % this->capacity;
-  this->size++;
+  arr[tail] = n;
+  tail = (tail + 1) % capacity;
+  size++;
+  cout << "[INFO] Successfully enqueued!" << endl;
 }
 
 void CircularQueue::dequeue() {
@@ -44,8 +46,9 @@ void CircularQueue::dequeue() {
     cout << "[WARNING] Queue is empty" << endl;
     return;
   }
-  this->head = (this->head + 1) % this->capacity;
-  this->size--;
+  head = (head + 1) % capacity;
+  size--;
+  cout << "[INFO] Successfully dequeued!" << endl;
 }
 
 void CircularQueue::printQueue() {
@@ -54,10 +57,15 @@ void CircularQueue::printQueue() {
     return;
   }
   cout << "Queue: ";
-  for (int i = this->head; i < this->head + this->size; i++) {
-    cout << this->arr[i % this->capacity] << " ";
+  for (int i = head; i < head + size; i++) {
+    cout << arr[i % capacity] << " ";
   }
   cout << endl;
+}
+
+CircularQueue::~CircularQueue() {
+  delete[] arr;
+  cout << "[INFO] Successfully destroyed!" << endl;
 }
 
 int main() {
