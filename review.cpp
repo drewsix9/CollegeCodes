@@ -1,88 +1,43 @@
+#include <ctime>
 #include <iostream>
+#include <math.h>
+#include <thread> // Include this for the sleep_for function
 
 using namespace std;
 
-class CircularQueue {
-public:
-  int head, tail, size, capacity, *arr;
-  CircularQueue();
-  bool isFull();
-  bool isEmpty();
-  void enqueue(int n);
-  void dequeue();
-  void printQueue();
-};
+bool isPrimeSqrt(int num) {
+  if (num <= 1)
+    return false;
 
-CircularQueue::CircularQueue() {
-  cout << "Enter size of queue: ";
-  cin >> this->capacity;
-  this->arr = new int[capacity];
-  this->head = this->tail = 0;
-  this->size = 0;
-}
+  if (num == 2)
+    return true;
 
-bool CircularQueue::isFull() {
-  return this->size == this->capacity;
-}
-
-bool CircularQueue::isEmpty() {
-  return this->size == 0;
-}
-
-void CircularQueue::enqueue(int n) {
-  if (isFull()) {
-    cout << "[WARNING] Queue is full" << endl;
-    return;
+  for (int i = 2; i < sqrt(num) + 1; i++) {
+    if (num % i == 0)
+      return false;
   }
-  this->arr[this->tail] = n;
-  this->tail = (this->tail + 1) % this->capacity;
-  this->size++;
+  return true;
 }
 
-void CircularQueue::dequeue() {
-  if (isEmpty()) {
-    cout << "[WARNING] Queue is empty" << endl;
-    return;
-  }
-  this->head = (this->head + 1) % this->capacity;
-  this->size--;
-}
+bool isPrime(int num) {
+  if (num <= 1)
+    return false;
 
-void CircularQueue::printQueue() {
-  if (isEmpty()) {
-    cout << "[WARNING] Queue is empty" << endl;
-    return;
+  for (int i = 2; i < (num); i++) {
+    if (num % i == 0)
+      return false;
   }
-  cout << "Queue: ";
-  for (int i = this->head; i < this->head + this->size; i++) {
-    cout << this->arr[i % this->capacity] << " ";
-  }
-  cout << endl;
+  return true;
 }
 
 int main() {
-  CircularQueue queue;
-  int choice, n;
-  while (1) {
-    cout << "0. Exit" << endl;
-    cout << "1. Enqueue" << endl;
-    cout << "2. Dequeue" << endl;
-    cout << "Enter choice: ";
-    cin >> choice;
-    switch (choice) {
-    case 0:
-      return 0;
-    case 1:
-      cout << "Enter number to enqueue: ";
-      cin >> n;
-      queue.enqueue(n);
-      break;
-    case 2:
-      queue.dequeue();
-      break;
-    default:
-      cout << "Invalid choice" << endl;
+  auto timeStart = clock();
+  for (int i = 0; i < 100000; i++) {
+    if (isPrime(i)) {
+      cout << i << endl;
     }
-    queue.printQueue();
   }
+  auto timeEnd = clock();
+  cout << "Time taken: " << (timeEnd - timeStart) / (double)CLOCKS_PER_SEC << " seconds" << endl;
+  cin.get();
 }
