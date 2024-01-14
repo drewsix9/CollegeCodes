@@ -132,10 +132,13 @@ void StackQueueLL::dequeue() {
 
 void StackQueueLL::printLL() {
   if (!head) {
-    cout << "[INFO] Linked list is empty" << endl;
+    cout << "\n[INFO] Linked list is empty" << endl;
     return;
   }
-  cout << "Output: ";
+  cout << "\n\nTop of Stack/Front of Queue" << endl;
+  cout << "          |" << endl;
+  cout << "          v" << endl;
+  cout << "\nOutput: ";
   Node *ptr = head;
   while (ptr) {
     cout << ptr->val << " ";
