@@ -8,7 +8,7 @@
       "name": "(gdb) Launch",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}\\bag-ao_problems\\output\\prob#18.exe",
+      "program": "${workspaceFolder}\\bag-ao_problems\\output\\prob#18-CstyleStrings.exe",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
