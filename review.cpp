@@ -1,53 +1,36 @@
-#include <ctime>
+#include <cstring>
 #include <iostream>
-#include <math.h>
-#include <thread> // Include this for the sleep_for function
 
 using namespace std;
 
-bool isPrimeSqrt(int num) {
-  if (num <= 1)
-    return false;
-
-  if (num == 2)
-    return true;
-
-  for (int i = 2; i < sqrt(num) + 1; i++) {
-    if (num % i == 0)
-      return false;
-  }
-  return true;
-}
-
-bool isPrime(int num) {
-  if (num <= 1)
-    return false;
-
-  for (int i = 2; i < (num); i++) {
-    if (num % i == 0)
-      return false;
-  }
-  return true;
-}
-bool isPrimeTimes(int num) {
-  if (num <= 1)
-    return false;
-
-  for (int i = 2; i * i <= (num); i++) {
-    if (num % i == 0)
-      return false;
-  }
-  return true;
-}
-
 int main() {
-  auto timeStart = clock();
-  for (int i = 0; i < 100; i++) {
-    if (isPrimeTimes(i)) {
-      cout << i << endl;
+  cout << "Enter size: ";
+  int size;
+  cin >> size;
+  int row, col;
+  row = col = size;
+  int arr[row][col];
+
+  // Set all elements to 0
+  memset(arr, 0, sizeof(arr));
+
+  int num = 1;
+  for (int i = 0; i < col; i++) // column
+  {
+    for (int j = 0; j < col - i; j++) // row
+    {
+      arr[i + j][i] = num++;
     }
   }
-  auto timeEnd = clock();
-  cout << "Time taken: " << (timeEnd - timeStart) / (double)CLOCKS_PER_SEC << " seconds" << endl;
-  cin.get();
+
+  cout << "Output: " << endl;
+  for (int i = 0; i < row; i++) {
+    for (int j = 0; j < col; j++) {
+      if (arr[i][j] != 0) {
+        cout << arr[i][j] << " ";
+      }
+    }
+    cout << endl;
+  }
+  return 0;
 }
