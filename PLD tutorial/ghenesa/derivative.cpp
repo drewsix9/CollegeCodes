@@ -10,6 +10,13 @@ Input:3x^3+4xy^2
 Output:9x^2+8xy+4y^2
 */
 
+string parseDigits(string term, int constant) {
+  string res;
+  res += to_string(constant);
+  res += term.substr(term.find('x'));
+  return res;
+}
+
 string deriveTerm(char var, string term, char sign) {
   string res = "";
   int constant = 0;
@@ -41,13 +48,6 @@ string deriveTerm(char var, string term, char sign) {
     term.erase(term.size() - 1);
     res += term + sign;
   }
-}
-
-string parseDigits(string term, int constant) {
-  string res;
-  res += to_string(constant);
-  res += term.substr(term.find('x'));
-  return res;
 }
 
 string derive(string str) {
