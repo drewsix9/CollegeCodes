@@ -10,6 +10,39 @@ Input:3x^3+4xy^2
 Output:9x^2+8xy+4y^2
 */
 
+string deriveTerm(char var, string term, char sign) {
+  string res = "";
+  int constant = 0;
+  size_t powerPos = term.find('^');
+  size_t variableXPos = term.find('x');
+  if (powerPos != string::npos) {
+    if (term.find('2', powerPos) != string ::npos) {
+      // if term has a power of 2
+      constant = (term[0] - '0') * (term[term.size() - 1] - '0');
+      if (constant >= 10) {
+        term = parseDigits(term, constant);
+      } else {
+        term[0] = constant + '0';
+      }
+      term.erase(term.find('x') + 1, 2);
+      res += term + sign;
+    } else {
+      // if term has a power of 3 or more
+      constant = (term[0] - '0') * (term[term.size() - 1] - '0');
+      if (constant >= 10) {
+        term = parseDigits(term, constant);
+      } else {
+        term[0] = constant + '0';
+      }
+      term[term.size() - 1] = ((term[term.size() - 1] - '0') - 1) + '0';
+      res += term + sign;
+    }
+  } else if (variableXPos != string::npos) {
+    term.erase(term.size() - 1);
+    res += term + sign;
+  }
+}
+
 string parseDigits(string term, int constant) {
   string res;
   res += to_string(constant);
@@ -55,7 +88,7 @@ string derive(string str) {
       term.erase(term.size() - 1);
       res += term + str[i];
     }
-    cout << "progress: " << res << endl;
+    // cout << "progress: " << res << endl;
   }
   if (res.back() == '+' || res.back() == '-') {
     res.pop_back();
