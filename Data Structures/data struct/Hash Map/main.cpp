@@ -1,4 +1,4 @@
-#include "hashmap.h"
+#include "hashmap.hcpp"
 #include <iostream>
 
 using namespace std;

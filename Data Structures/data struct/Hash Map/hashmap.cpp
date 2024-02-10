@@ -1,4 +1,4 @@
-#include "hashmap.h"
+#include "hashmap.hcpp"
 
 HashMap::HashMap() {
   table = vector<Node *>(1000, new Node());
