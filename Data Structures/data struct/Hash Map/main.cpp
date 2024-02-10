@@ -14,4 +14,5 @@ int main() {
   map.remove(2);
   cout << map.get(2) << endl;
   return 0;
+  // print 2, 3, 4, -1
 }

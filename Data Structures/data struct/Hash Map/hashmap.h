@@ -1,5 +1,6 @@
 
 #include "linkedlist.h"
+#include <vector>
 using namespace std;
 
 #ifndef HASHMAP_CPP
@@ -7,9 +8,9 @@ using namespace std;
 
 class HashMap {
 public:
-  LinkedList *table;
+  vector<Node *> table;
   HashMap();
-  ~HashMap();
+  ~HashMap() {}
   void put(int key, int value);
   int get(int key);
   void remove(int key);

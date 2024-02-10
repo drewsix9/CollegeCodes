@@ -1,15 +1,11 @@
 #include "hashmap.h"
 
 HashMap::HashMap() {
-  table = new LinkedList[1000];
-}
-
-HashMap::~HashMap() {
-  delete[] table;
+  table = vector<Node *>(1000, new Node());
 }
 
 void HashMap::put(int key, int value) {
-  LinkedList::Node *curr = table[hash(key)].head;
+  Node *curr = table[hash(key)];
   while (curr->next) {
     if (curr->key == key) {
       curr->val = value;
@@ -17,11 +13,11 @@ void HashMap::put(int key, int value) {
     }
     curr = curr->next;
   }
-  curr->next = new LinkedList::Node(key, value);
+  curr->next = new Node(key, value);
 }
 
 int HashMap::get(int key) {
-  LinkedList::Node *curr = table[hash(key)].head->next;
+  Node *curr = table[hash(key)]->next;
   while (curr) {
     if (curr->key == key) {
       return curr->val;
@@ -32,10 +28,10 @@ int HashMap::get(int key) {
 }
 
 void HashMap::remove(int key) {
-  LinkedList::Node *curr = table[hash(key)].head;
+  Node *curr = table[hash(key)];
   while (curr->next) {
     if (curr->next->key == key) {
-      LinkedList::Node *del = curr->next;
+      Node *del = curr->next;
       curr->next = curr->next->next;
       delete del;
       return;
