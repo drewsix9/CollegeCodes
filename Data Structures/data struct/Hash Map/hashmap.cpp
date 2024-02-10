@@ -1,14 +1,17 @@
 #include "hashmap.hcpp"
 
 HashMap::HashMap() {
-  table = vector<Node *>(1000, new Node());
+  table = vector<Node *>(1000);
+  for (int i = 0; i < 1000; i++) {
+    table[i] = new Node();
+  }
 }
 
 void HashMap::put(int key, int value) {
   Node *curr = table[hash(key)];
-  while (curr->next) {
-    if (curr->key == key) {
-      curr->val = value;
+  while (curr && curr->next) {
+    if (curr->_key == key) {
+      curr->_val = value;
       return;
     }
     curr = curr->next;
@@ -19,8 +22,8 @@ void HashMap::put(int key, int value) {
 int HashMap::get(int key) {
   Node *curr = table[hash(key)]->next;
   while (curr) {
-    if (curr->key == key) {
-      return curr->val;
+    if (curr->_key == key) {
+      return curr->_val;
     }
     curr = curr->next;
   }
@@ -29,8 +32,8 @@ int HashMap::get(int key) {
 
 void HashMap::remove(int key) {
   Node *curr = table[hash(key)];
-  while (curr->next) {
-    if (curr->next->key == key) {
+  while (curr && curr->next) {
+    if (curr->next->_key == key) {
       Node *del = curr->next;
       curr->next = curr->next->next;
       delete del;

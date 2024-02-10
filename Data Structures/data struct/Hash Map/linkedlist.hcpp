@@ -7,8 +7,8 @@ using namespace std;
 
 class Node {
 public:
-  int key;
-  int val;
+  int _key;
+  int _val;
   Node *next;
 
   // constructors

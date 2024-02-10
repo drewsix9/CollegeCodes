@@ -1,22 +1,30 @@
-CXX       := g++
-CXX_FLAGS := -std=c++17 -ggdb
+# use Clang to compile
 
-BIN     := bin
-SRC     := src
-INCLUDE := include
+# Compiler
+CXX = g++
 
-LIBRARIES   :=
-EXECUTABLE  := main
+# Compiler flags
+CXXFLAGS = -std=c++17 -Wall -Wextra -g
 
+# Source files
+SRCS = hashmap.cpp main.cpp linkedlist.cpp
+# Object files
+OBJS = $(SRCS:.cpp=.o)
 
-all: $(BIN)/$(EXECUTABLE)
+# Executable
+TARGET = app
 
-run: clean all
-    clear
-    ./$(BIN)/$(EXECUTABLE)
+# Default target
+all: $(TARGET)
 
-$(BIN)/$(EXECUTABLE): $(SRC)/*.cpp
-    $(CXX) $(CXX_FLAGS) -I$(INCLUDE) $^ -o $@ $(LIBRARIES)
+# Rule to compile source files into object files
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+# Rule to link object files into the executable
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+# Clean rule
 clean:
-    -rm $(BIN)/*
+	rm -f $(OBJS) $(TARGET)
