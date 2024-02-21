@@ -3,3 +3,4 @@ JL probs/output/4.exe
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/tasks.json
+*.exe
