@@ -6,3 +6,4 @@ JL probs/output/4.exe
 output/*.exe
 *.exe
 **/*.exe
+*.exe
