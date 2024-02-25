@@ -87,6 +87,7 @@
     "valarray": "cpp",
     "variant": "cpp",
     "*.hcpp": "cpp",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "string.h": "c"
   }
 }
