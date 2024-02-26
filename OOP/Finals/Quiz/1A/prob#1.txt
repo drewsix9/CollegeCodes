@@ -1,7 +1,5 @@
-reverse the word if it contains double same vowel letter
+  reverse the word if it contains strictly double consecutive same vowel letter
 
-input: hello wooorld book
+  input: hello wooorld book
 
-output: hello wooorld koob
-
-
+  output: hello wooorld koob

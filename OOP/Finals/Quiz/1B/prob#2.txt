@@ -1,3 +1,5 @@
+Input a string and a word to be deleted
+
 Input: hello world hoord
 string to be removed: or
 

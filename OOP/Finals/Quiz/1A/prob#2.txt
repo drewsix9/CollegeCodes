@@ -1,9 +1,9 @@
 enter a string of binary inputs
 convert to decimal, if it has '.' do not convert
 
-1101 1011 101 1.1
+input: 1101 1011 101 1.1
 
-13   11   5
+output: 13   11   5   1.1
 
 1
 4
