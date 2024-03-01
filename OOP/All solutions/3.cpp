@@ -23,7 +23,6 @@ int main() {
   cout << "\nOutput: ";
   char *word = strtok(str, " ");
   while (word != NULL) {
-    int len = strlen(word);
     char *hasVowel = strpbrk(word, vowels);
     if (hasVowel != NULL) {
       strrev(word);
