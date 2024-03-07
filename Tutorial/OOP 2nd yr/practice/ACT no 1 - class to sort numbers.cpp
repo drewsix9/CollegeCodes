@@ -1,4 +1,3 @@
-#include <cmath>
 #include <cstring>
 #include <iostream>
 
@@ -10,13 +9,21 @@ private:
   int size;
 
 public:
-  SortNums(int *arr, int size); // constructor
+  SortNums(); // constructor
   void sort();
   void display();
 };
 
 int main() {
-  int arr[100];
+  SortNums obj;
+  obj.sort();
+  obj.display();
+  return 0;
+}
+
+SortNums::SortNums() { // constructor
+  cout << "Constructor called" << endl;
+  int buffer[100];
   char str[100];
   cout << "Enter elements of array: ";
   cin.getline(str, 100); // input numbers in a single line
@@ -24,22 +31,14 @@ int main() {
   char *token = strtok(str, " ");
   int n = 0;
   while (token != NULL) {
-    arr[n] = atoi(token); // convert string to integer
+    buffer[n] = atoi(token); // convert string to integer
     token = strtok(NULL, " ");
     n++;
   }
-  SortNums obj(arr, n);
-  obj.sort();
-  obj.display();
-  return 0;
-}
-
-SortNums::SortNums(int *arr, int size) { // constructor
-  cout << "Constructor called" << endl;
-  this->arr = new int[size]; // dynamic memory allocation
-  this->size = size;
-  for (int i = 0; i < size; i++) {
-    this->arr[i] = arr[i]; // this->array[i] is the class member while arr[i] is the parameter
+  this->arr = new int[n]; // dynamic memory allocation
+  this->size = n;
+  for (int i = 0; i < this->size; i++) {
+    this->arr[i] = buffer[i]; // this->array[i] is the class member while arr[i] is the parameter
   }
 }
 
