@@ -1,31 +1,49 @@
 #include <cstring>
 #include <iostream>
+#include <map>
 
 using namespace std;
 
 int numWordtoInt(char str[]) {
-  if (strcmp(str, "zero") == 0)
-    return 0;
-  if (strcmp(str, "one hundred") == 0)
-    return 100;
-
-  const char *words[] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
-
-  int values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 30, 40, 50, 60, 70, 80, 90};
+  map<string, int> wordToNum = {
+      {"zero", 0},
+      {"one", 1},
+      {"two", 2},
+      {"three", 3},
+      {"four", 4},
+      {"five", 5},
+      {"six", 6},
+      {"seven", 7},
+      {"eight", 8},
+      {"nine", 9},
+      {"ten", 10},
+      {"eleven", 11},
+      {"twelve", 12},
+      {"thirteen", 13},
+      {"fourteen", 14},
+      {"fifteen", 15},
+      {"sixteen", 16},
+      {"seventeen", 17},
+      {"eighteen", 18},
+      {"nineteen", 19},
+      {"twenty", 20},
+      {"thirty", 30},
+      {"forty", 40},
+      {"fifty", 50},
+      {"sixty", 60},
+      {"seventy", 70},
+      {"eighty", 80},
+      {"ninety", 90},
+      {"one hundred", 100},
+  };
 
   int result = 0;
 
   char *word = strtok(str, " ");
   while (word != NULL) {
-    bool isFound = 0;
-    for (int i = 0; i < 27; i++) {
-      if (strcmp(word, words[i]) == 0) {
-        isFound = 1;
-        result += values[i];
-        break;
-      }
-    }
-    if (!isFound) {
+    if (wordToNum.find(word) != wordToNum.end()) {
+      result += wordToNum[word];
+    } else {
       cout << "Error: Invalid word found in input: " << word << endl;
       exit(EXIT_FAILURE);
     }
