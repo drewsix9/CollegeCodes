@@ -4,24 +4,29 @@
 using namespace std;
 
 int numWordtoInt(char str[]) {
-
   if (strcmp(str, "zero") == 0)
     return 0;
-  const char *words[] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred"};
-  int values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2, 3, 4, 5, 6, 7, 8, 9, 100};
+  if (strcmp(str, "one hundred") == 0)
+    return 100;
+
+  const char *words[] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+  int values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 30, 40, 50, 60, 70, 80, 90};
+
   int result = 0;
+
   char *word = strtok(str, " ");
   while (word != NULL) {
-    for (int i = 0; i < 28; i++) {
-      if (i == 27) { // If word is "hundred", multiply result by 100
-        result *= 10;
-        break;
-      }
+    bool isFound = 0;
+    for (int i = 0; i < 27; i++) {
       if (strcmp(word, words[i]) == 0) {
-        result *= 10;
+        isFound = 1;
         result += values[i];
         break;
       }
+    }
+    if (!isFound) {
+      cout << "Error: Invalid word found in input: " << word << endl;
+      exit(EXIT_FAILURE);
     }
     word = strtok(NULL, " ");
   }
@@ -53,7 +58,7 @@ int main() {
   cin.ignore(); // Ignore newline
   for (int i = 0; i < n; i++) {
     char temp[100];
-    printf("Enter number: ");
+    cout << "Enter number: ";
     cin.getline(str, 100);
     strcpy(temp, str);
     cout << "Number: " << numWordtoInt(str) << endl;
