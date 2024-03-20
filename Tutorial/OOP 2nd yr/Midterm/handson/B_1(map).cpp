@@ -41,11 +41,12 @@ int numWordtoInt(char str[]) {
 
   char *word = strtok(str, " ");
   while (word != NULL) {
-    if (wordToNum.find(word) != wordToNum.end()) {
-      result += wordToNum[word];
-    } else {
+    if (wordToNum.find(word) == wordToNum.end()) {
       cout << "Error: Invalid word found in input: " << word << endl;
       exit(EXIT_FAILURE);
+    }
+    if (word == "hundred") {
+      result += wordToNum[word];
     }
     word = strtok(NULL, " ");
   }
