@@ -9,7 +9,7 @@ Number: 1
 Enter number: nine
 Number: 9
 
-Output: one , three , seven , nine
+Output: eno , eehrt , eensv , einn
 */
 
 #include <cstring>
@@ -48,7 +48,7 @@ int numWordtoInt(char str[]) {
   return result;
 }
 
-void sort(char arrStr[][100], int n) {
+void sortNumAsWords(char arrStr[][100], int n) {
   for (int i = 0; i < n; i++) {
     for (int j = i + 1; j < n; j++) {
       char temp1[50], temp2[50];
@@ -59,6 +59,18 @@ void sort(char arrStr[][100], int n) {
         strcpy(temp, arrStr[i]);
         strcpy(arrStr[i], arrStr[j]);
         strcpy(arrStr[j], temp);
+      }
+    }
+  }
+}
+
+void sortCharacters(char str[]) {
+  for (int i = 0; i < strlen(str); i++) {
+    for (int j = i + 1; j < strlen(str); j++) {
+      if (str[i] > str[j]) {
+        char temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
       }
     }
   }
@@ -79,9 +91,10 @@ int main() {
     cout << "Number: " << numWordtoInt(str) << endl;
     strcpy(arrStr[i], temp);
   }
-  sort(arrStr, n);
+  sortNumAsWords(arrStr, n);
   cout << "\n\nOutput: ";
   for (int i = 0; i < n; i++) {
+    sortCharacters(arrStr[i]);
     cout << arrStr[i] << " ";
     if (i != n - 1)
       cout << ", ";

@@ -1,3 +1,17 @@
+/*
+Enter how many numbers: 4
+Enter number: three
+Number: 3
+Enter number: seven
+Number: 7
+Enter number: one
+Number: 1
+Enter number: nine
+Number: 9
+
+Output: one , three , seven , nine
+*/
+
 #include <cstring>
 #include <iostream>
 #include <map>
