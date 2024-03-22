@@ -68,13 +68,13 @@ int main() {
   char *saveptr;
   cout << "\nOutput: ";
   // Split the string into words separated by " "
-  char *token = strtok(str, " ");
+  char *token = strtok(str, " ,");
   while (token != NULL) {
     // If the integer representation of the word is prime, print the word
     if (isPrime(wordToInt(token, &saveptr))) {
       cout << token << " ";
     }
     // Get the next word
-    token = strtok(NULL, " ");
+    token = strtok(NULL, " ,");
   }
 }
