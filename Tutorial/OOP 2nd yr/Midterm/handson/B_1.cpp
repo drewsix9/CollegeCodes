@@ -29,7 +29,7 @@ int numWordtoInt(char str[]) {
 
   int result = 0;
 
-  char *word = strtok(str, " ");
+  char *word = strtok(str, " -");
   while (word != NULL) {
     bool isFound = 0;
     for (int i = 0; i < 27; i++) {
