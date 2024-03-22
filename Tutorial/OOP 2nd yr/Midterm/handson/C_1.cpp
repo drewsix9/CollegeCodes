@@ -32,8 +32,13 @@ int wordToInt(char *str, char **saveptr) {
   // Variable to store the result
   int result = 0;
 
+  // Allocate memory for a copy of the string, plus one for the null terminator
+  char *strCopy = new char[strlen(str) + 1];
+  // Copy the original string to the newly allocated memory
+  strcpy(strCopy, str);
   // Split the string into words separated by "-"
-  char *word = strtok_r(str, "-", saveptr);
+  char *word = strtok_r(strCopy, "-", saveptr);
+  // make a copy of the string
   while (word != NULL) {
     bool isFound = 0;
     // Loop through the words array
