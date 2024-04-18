@@ -13,7 +13,7 @@ string reverseStr(string &str) {
 class Number {
 public:
   int num;
-  Number(int num) : num(num) {}
+  Number(int x) : num(x) {}
 };
 
 class HappyNumber : public Number {
