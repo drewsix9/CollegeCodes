@@ -3,14 +3,10 @@
 
 using namespace std;
 
-string sortStr(string &str) {
+string reverseStr(string &str) {
   int size = str.length();
-  for (int i = 0; i < size; i++) {
-    for (int j = i + 1; j < size; j++) {
-      if (str[i] > str[j]) {
-        swap(str[i], str[j]);
-      }
-    }
+  for (int i = 0; i < size / 2; i++) {
+    swap(str[i], str[size - i - 1]);
   }
   return str;
 }
@@ -25,6 +21,18 @@ string removePairChars(string &str) {
         size -= 2;
         i = -1;
         break;
+      }
+    }
+  }
+  return str;
+}
+
+string sortStr(string &str) {
+  int size = str.length();
+  for (int i = 0; i < size; i++) {
+    for (int j = i + 1; j < size; j++) {
+      if (str[i] > str[j]) {
+        swap(str[i], str[j]);
       }
     }
   }
@@ -62,7 +70,13 @@ int main() {
   string input;
   cout << "Enter input: ";
   getline(cin, input);
-
   HappyNumber hn = HappyNumber(input.length());
-  cout << "Output: " << (hn.isHappy() ? removePairChars(input) : sortStr(input)) << endl;
+  if (hn.isHappy()) {
+    string sorted = sortStr(input);
+    cout << "input length is HAPPY number" << endl;
+    cout << "Output:" << removePairChars(sorted) << endl;
+  } else {
+    cout << "input length is UNHAPPY number" << endl;
+    cout << "Output:" << reverseStr(input) << endl;
+  }
 }
