@@ -1,68 +1,96 @@
 #include <cmath>
 #include <iostream>
+#include <sstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 bool isDeficientNumber(int num) {
-  int divisors[100] = {};
   int divisorSum = 0;
-  int n = 0;
   for (int i = 1; i <= num; i++) {
     if (num % i == 0) {
       divisorSum += i;
-      divisors[n] = i;
-      n++;
     }
   }
-  // for (int i = 0; i < n; i++) {
-  //   cout << divisors[i] << " ";
-  // }
-  // cout << "\nDivisor sum: " << divisorSum << endl;
   return divisorSum < num * 2;
 }
 
-char encryptDeficientChar(char c) {
-  return (c - 'a' + 5 + 26) % 26 + 'A';
-}
-char encryptNotDeficientChar(char c) {
-  if (isupper(c)) {
-    return (c - 'A' + 5) % 26 + 'A';
-  } else {
-    return (c - 'a' + 5) % 26 + 'a';
-  }
-}
+class Encryption {
+  // protected so that derived classes can access them
+protected:
+  // static keyword is used to make the variable common to all objects of the class
+  static const string encryptStringHash;
+  static const string encryptIntHash;
+  static const int shiftEncrypt = 5;
+  static const int shiftDecrypt = 6;
+};
 
-string stringEncrypt(string &input) {
-  string res;
-  for (char c : input) {
-    if (isspace(c))
-      res += c;
-    else if (isDeficientNumber(c)) {
-      cout << c << " is deficient\n";
-      res += encryptDeficientChar(c);
-    } else {
-      cout << c << " is NOT deficient\n";
-      res += encryptNotDeficientChar(c);
+// Defining the static variables
+const string Encryption::encryptStringHash = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const string Encryption::encryptIntHash = "0123456789";
+
+class StringEncryptDecrypt : public Encryption {
+public:
+  static string stringEncrypt(string str) {
+    string encryptedStr = "";
+    for (char c : str) {
+      int index = encryptStringHash.find(c);
+      encryptedStr += encryptStringHash[(index + shiftEncrypt) % 52];
     }
+    return encryptedStr;
   }
-  return res;
-}
+  static string stringDecrypt(string str) {
+    string decryptedStr = "";
+    for (char c : str) {
+      int index = encryptStringHash.find(c);
+      decryptedStr += encryptStringHash[(index - shiftDecrypt) % 52];
+    }
+    return decryptedStr;
+  }
+};
+
+class IntEncryptDecrypt : public Encryption {
+public:
+  static string intEncrypt(int num) {
+    string str = to_string(num);
+    string decryptedStr = "";
+    for (char c : str) {
+      int index = encryptIntHash.find(c);
+      decryptedStr += encryptIntHash[(index + shiftEncrypt) % 10];
+    }
+    return decryptedStr;
+  }
+  static string intDecrypt(int num) {
+    string str = to_string(num);
+    string decryptedStr = "";
+    for (char c : str) {
+      int index = encryptIntHash.find(c);
+      decryptedStr += encryptIntHash[(index - shiftDecrypt) % 10];
+    }
+    return decryptedStr;
+  }
+};
 
 int main() {
-  // string input;
-  // cout << "Enter a input: ";
-  // getline(cin, input);
-  // cout << "\nOutput: ";
-  // cout << stringEncrypt(input) << endl;
-
-  // for (int i = 0; i < 26; i++) {
-  //   cout << (char)('a' + i) << " " << 'a' + i << " -> " << boolalpha << isDeficientNumber('a' + i) << "\t" << (char)('a' + i - 32) << " " << 'a' + i + 32 << " -> " << boolalpha << isDeficientNumber('a' + i + 32) << endl;
-  // }
-
-  for (int i = 1; i <= 26; i++) {
-    cout << boolalpha << isDeficientNumber(i) << endl;
+  string input, str;
+  cout << "Enter a input: ";
+  getline(cin, input);
+  cout << "\nOutput: ";
+  stringstream ss(input); // Used to split words
+  while (ss >> str) {     // Splitting words and checking if it is a string or an integer
+    if (isalpha(str[0])) {
+      if (isDeficientNumber(str.length())) {
+        cout << StringEncryptDecrypt::stringEncrypt(str) << " ";
+      } else {
+        cout << StringEncryptDecrypt::stringDecrypt(str) << " ";
+      }
+    } else {
+      if (isDeficientNumber(stoi(str))) {
+        cout << IntEncryptDecrypt::intEncrypt(stoi(str)) << " ";
+      } else {
+        cout << IntEncryptDecrypt::intDecrypt(stoi(str)) << " ";
+      }
+    }
   }
-
-  // cout << boolalpha << isDeficientNumber(120) << endl;
 }
