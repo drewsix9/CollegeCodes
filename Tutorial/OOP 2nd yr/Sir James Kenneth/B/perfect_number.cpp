@@ -1,3 +1,4 @@
+
 #include <cmath>
 #include <iostream>
 #include <sstream>
@@ -5,14 +6,14 @@
 
 using namespace std;
 
-bool isDeficientNumber(int num) {
+bool isPerfectNumber(int num) {
   int divisorSum = 0;
-  for (int i = 1; i <= num; i++) {
+  for (int i = 1; i <= num / 2; i++) {
     if (num % i == 0) {
       divisorSum += i;
     }
   }
-  return divisorSum < num * 2;
+  return divisorSum == num;
 }
 
 class Encryption {
@@ -26,7 +27,7 @@ protected:
 };
 
 // Defining the static variables
-const string Encryption::encryptStringHash = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const string Encryption::encryptStringHash = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
 const string Encryption::encryptIntHash = "0123456789";
 
 class StringEncryptDecrypt : public Encryption {
@@ -79,15 +80,13 @@ int main() {
   stringstream ss(input); // Used to split words
   while (ss >> str) {     // Splitting words and checking if it is a string or an integer
     if (isalpha(str[0])) {
-      if (isDeficientNumber(str.length())) {
-        cout << "is a deficient number!";
+      if (isPerfectNumber(str.length())) {
         cout << StringEncryptDecrypt::stringEncrypt(str) << " ";
       } else {
-        cout << "is not a deficient number!";
         cout << StringEncryptDecrypt::stringDecrypt(str) << " ";
       }
     } else {
-      if (isDeficientNumber(stoi(str))) {
+      if (isPerfectNumber(stoi(str))) {
         cout << IntEncryptDecrypt::intEncrypt(stoi(str)) << " ";
       } else {
         cout << IntEncryptDecrypt::intDecrypt(stoi(str)) << " ";
