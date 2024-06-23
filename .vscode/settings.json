@@ -90,5 +90,6 @@
     "stdio.h": "c",
     "string.h": "c",
     "ctype.h": "c"
-  }
+  },
+  "livePreview.defaultPreviewPath": "/Learn Full Stack Development/yt/rock-paper-scissors.html"
 }

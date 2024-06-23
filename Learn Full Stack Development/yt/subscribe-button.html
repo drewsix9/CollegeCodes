@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youtube Subscribe button</title>
+</head>
+
+<body>
+  <p>Youtube Subscribe button</p>
+  <button onclick="toggleSubscribe()">Subscribe</button>
+  <script>
+    function toggleSubscribe() {
+      var button = document.querySelector('button');
+      if (button.innerHTML === 'Subscribe') {
+        button.innerHTML = 'Unsubscribe';
+      } else {
+        button.innerHTML = 'Subscribe';
+      }
+    }
+  </script>
+</body>
+
+</html>
