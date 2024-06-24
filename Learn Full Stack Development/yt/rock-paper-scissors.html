@@ -10,13 +10,14 @@
 
 <body>
   <p>Rock Paper Scissors</p>
-  <button class="move-button" onclick="pressButton('rock')"><img class="move-image" src="images/rock.png"></button>
-  <button class="move-button" onclick="pressButton('paper')"><img class="move-image" src="images/paper.png"></button>
-  <button class="move-button" onclick="pressButton('scissors')"><img class="move-image" src="images/scissors.png"></button>
+  <button class="rock-button move-button" ><img class="move-image" src="images/rock.png"></button>
+  <button class="paper-button move-button" ><img class="move-image" src="images/paper.png"></button>
+  <button class="scissors-button move-button" ><img class="move-image" src="images/scissors.png"></button>
   <h2 class="js-result"></h2>
   <p class="js-resulting-moves"></p>
   <p class="js-scoreboard"></p>
-  <button onclick="resetScore()">Reset Scoreboard</button>
+  <button class="reset-button">Reset Scoreboard</button>
+  <button class="auto-play-button">Auto Play</button>
   </p>
   <script src="scripts/rock-paper-scissors.js"></script>
 </body>

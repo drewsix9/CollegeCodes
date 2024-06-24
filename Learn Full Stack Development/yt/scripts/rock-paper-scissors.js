@@ -1,4 +1,12 @@
 
+// add event listeners to the buttons
+document.querySelector('.rock-button').addEventListener('click', () => pressButton('rock'))
+document.querySelector('.paper-button').addEventListener('click', () => pressButton('paper'))
+document.querySelector('.scissors-button').addEventListener('click', () => pressButton('scissors'))
+document.querySelector('.reset-button').addEventListener('click', resetScore)
+document.querySelector('.auto-play-button').addEventListener('click', autoPlay)
+
+
 // get the scoreboard element from local storage
 let gameScore = JSON.parse(localStorage.getItem('gameScore')) || {
   wins: 0,
@@ -9,11 +17,14 @@ let gameScore = JSON.parse(localStorage.getItem('gameScore')) || {
 // display the scoreboard
 document.querySelector('.js-scoreboard').textContent = `Wins: ${gameScore.wins}, Losses: ${gameScore.losses}, Ties: ${gameScore.ties}`
 
-const pressButton = (playerChoice) => {
+function pickRandom() {
   const choices = ['rock', 'paper', 'scissors'];
-  const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+  return choices[Math.floor(Math.random() * choices.length)];
+}
 
-  // alert(`Player: ${playerChoice}, Computer: ${computerChoice}\n You ${playerChoice === computerChoice ? 'tied' : playerChoice === 'rock' && computerChoice === 'scissors' || playerChoice === 'paper' && computerChoice === 'rock' || playerChoice === 'scissors' && computerChoice === 'paper' ? 'won' : 'lost'}`);
+function pressButton(playerChoice) {
+
+  const computerChoice = pickRandom();
 
   let result = '';
 
@@ -42,7 +53,7 @@ const pressButton = (playerChoice) => {
   localStorage.setItem('gameScore', JSON.stringify(gameScore));
 };
 
-const resetScore = () => {
+function resetScore() {
   gameScore = {
     wins: 0,
     losses: 0,
@@ -50,4 +61,20 @@ const resetScore = () => {
   };
   document.querySelector('.js-scoreboard').textContent = `Wins: ${gameScore.wins}, Losses: ${gameScore.losses}, Ties: ${gameScore.ties}`;
   localStorage.setItem('gameScore', JSON.stringify(gameScore));
+}
+
+let autoPlayIntervalID;
+let isAutoPlaying = false;
+
+function autoPlay() {
+  if (!isAutoPlaying) {
+    autoPlayIntervalID = setInterval(() => {
+      const playerChoice = pickRandom();
+      pressButton(playerChoice);
+    }, 500);
+    isAutoPlaying = true;
+  } else {
+    clearInterval(autoPlayIntervalID);
+    isAutoPlaying = false;
+  }
 }
