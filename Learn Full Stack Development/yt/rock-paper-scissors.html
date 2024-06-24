@@ -2,11 +2,7 @@
 <html lang="en">
 
 <head>
-  <style>
-    button {
-      margin-right: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles/rock-paper-scissors.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rock Paper Scissors</title>
@@ -14,62 +10,15 @@
 
 <body>
   <p>Rock Paper Scissors</p>
-  <button onclick="pressButton('rock')">Rock</button><button onclick="pressButton('paper')">Paper</button><button
-    onclick="pressButton('scissors')">Scissors</button>
+  <button class="move-button" onclick="pressButton('rock')"><img class="move-image" src="images/rock.png"></button>
+  <button class="move-button" onclick="pressButton('paper')"><img class="move-image" src="images/paper.png"></button>
+  <button class="move-button" onclick="pressButton('scissors')"><img class="move-image" src="images/scissors.png"></button>
+  <h2 class="js-result"></h2>
+  <p class="js-resulting-moves"></p>
   <p class="js-scoreboard"></p>
   <button onclick="resetScore()">Reset Scoreboard</button>
   </p>
-  <script>
-
-    // get the scoreboard element from local storage
-    let gameScore = JSON.parse(localStorage.getItem('gameScore')) || {
-      wins: 0,
-      losses: 0,
-      ties: 0
-    };
-
-    // display the scoreboard
-    document.querySelector('.js-scoreboard').textContent = `Wins: ${gameScore.wins}, Losses: ${gameScore.losses}, Ties: ${gameScore.ties}`
-
-    const pressButton = (playerChoice) => {
-      const choices = ['rock', 'paper', 'scissors'];
-      const computerChoice = choices[Math.floor(Math.random() * choices.length)];
-
-      alert(`Player: ${playerChoice}, Computer: ${computerChoice}\n You ${playerChoice === computerChoice ? 'tied' : playerChoice === 'rock' && computerChoice === 'scissors' || playerChoice === 'paper' && computerChoice === 'rock' || playerChoice === 'scissors' && computerChoice === 'paper' ? 'won' : 'lost'}`);
-
-      let result = '';
-
-      if (playerChoice === computerChoice) {
-        result = 'tie';
-        gameScore.ties++;
-      } else if (
-        (playerChoice === 'rock' && computerChoice === 'scissors') ||
-        (playerChoice === 'paper' && computerChoice === 'rock') ||
-        (playerChoice === 'scissors' && computerChoice === 'paper')
-      ) {
-        result = 'win';
-        gameScore.wins++;
-      } else {
-        result = 'lose';
-        gameScore.losses++;
-      }
-
-      document.querySelector('.js-scoreboard').textContent = `Wins: ${gameScore.wins}, Losses: ${gameScore.losses}, Ties: ${gameScore.ties}`;
-
-      // save the scoreboard to local storage
-      localStorage.setItem('gameScore', JSON.stringify(gameScore));
-    };
-
-    const resetScore = () => {
-      gameScore = {
-        wins: 0,
-        losses: 0,
-        ties: 0
-      };
-      document.querySelector('.js-scoreboard').textContent = `Wins: ${gameScore.wins}, Losses: ${gameScore.losses}, Ties: ${gameScore.ties}`;
-      localStorage.setItem('gameScore', JSON.stringify(gameScore));
-    }
-  </script>
+  <script src="scripts/rock-paper-scissors.js"></script>
 </body>
 
 </html>
