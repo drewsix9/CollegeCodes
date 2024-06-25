@@ -1,15 +1,44 @@
-export let cart = new Map();
+export let cart = JSON.parse(localStorage.getItem('cart')) || [];
+// export let cart = [
+//   // {
+//   //   productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+//   //   quantity: 2
+//   // },
+//   // {
+//   //   productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+//   //   quantity: 1
+//   // }
+// ]
+
+export function saveLocalStorage() {
+  const cartString = JSON.stringify(cart);
+  localStorage.setItem('cart', cartString);
+}
 
 export function addToCart(productId, quantity) {
-  if (cart.has(productId)) {
-    // If the item is already in the cart, update the quantity
-    let item = cart.get(productId);
-    item.quantity += quantity;
-    cart.set(productId, item);
-  } else {
-    // If the item is not in the cart, add it
-    cart.set(productId, { productId, quantity });
+  let matchingProduct = false;
+  cart.forEach((cartItem) => {
+    if (cartItem.productId === productId) {
+      matchingProduct = true;
+      cartItem.quantity += quantity;
+    }
+  });
+
+  if (!matchingProduct) {
+    cart.push({
+      productId,
+      quantity
+    });
   }
+
+  saveLocalStorage();
+}
+
+export function removeFromCart(productId) {
+  cart = cart.filter((cartItem) => {
+    return cartItem.productId !== productId;
+  });
+  saveLocalStorage();
 }
 
 export function updateCartQuantity() {

@@ -57,6 +57,10 @@ products.forEach((product) => {
 // Add the generated HTML to the products-grid
 document.querySelector('.products-grid').innerHTML = productsHTML;
 
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartQuantity();
+});
+
 // Add the event listener to the add to cart button
 document.querySelectorAll('.js-add-to-card').forEach((button, index) => {
   button.addEventListener('click', () => {
