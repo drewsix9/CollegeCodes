@@ -43,11 +43,10 @@ products.forEach((product) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart added-to-cart-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
-
           <button class="add-to-cart-button button-primary js-add-to-card" data-product-id="${product.id}">
             Add to Cart
           </button>
@@ -69,6 +68,8 @@ document.querySelectorAll('.js-add-to-card').forEach((button, index) => {
     const quantity = parseInt(quantitySelectorElement.value);
 
     addToCart(productId, quantity);
+    // show hint added to cart
+    showHintAddedToCart(productId);
 
     updateCartQuantity();
 
@@ -76,5 +77,18 @@ document.querySelectorAll('.js-add-to-card').forEach((button, index) => {
     console.log(cart);
   })
 })
+
+function showHintAddedToCart(productId) {
+  // Select all elements with the class .added-to-cart
+  const elements = document.querySelector(`.added-to-cart-${productId}`);
+
+  // Iterate over the selected elements and change the opacity
+  elements.forEach(element => {
+    element.style.opacity = '1'; // Change opacity to 1 to make it visible
+  });
+}
+
+
+
 
 
