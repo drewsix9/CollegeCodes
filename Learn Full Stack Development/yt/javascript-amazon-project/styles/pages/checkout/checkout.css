@@ -119,6 +119,18 @@
   margin-left: 3px;
 }
 
+.quantity-input, .save-quantity-link{ 
+  display: none;
+}
+
+.is-editing-quantity-hide {
+  display: none;
+}
+
+.is-editing-quantity-show {
+  display: inline;
+}
+
 @media (max-width: 1000px) {
   .delivery-options {
     /* grid-column: 1 means this element will be placed
@@ -208,4 +220,8 @@
 
   margin-top: 11px;
   margin-bottom: 15px;
+}
+
+.product-quantity input {
+  width: 30px;
 }
