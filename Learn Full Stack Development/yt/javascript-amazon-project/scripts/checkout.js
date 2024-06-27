@@ -1,4 +1,4 @@
-import { cart, removeFromCart, saveLocalStorage } from "../data/cart.js";
+import { cart, getCartQuantity, removeFromCart, saveLocalStorage, updateCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatMoney } from "../utils/money.js";
 
@@ -6,6 +6,9 @@ let orderSummaryHTML = '';
 
 saveLocalStorage();
 cart.forEach((cartItem, index) => {
+
+  const returnHomeElement = document.querySelector('.js-return-to-home-link');
+  returnHomeElement.textContent = ` ${getCartQuantity()} items`;
 
   let productId = cartItem.productId;
   let matchingProduct = products.find((product) => {
@@ -33,7 +36,7 @@ cart.forEach((cartItem, index) => {
                   <span>
                     Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                   </span>
-                  <span class="update-quantity-link link-primary">
+                  <span class="update-quantity-link link-primary" data-product-id="${matchingProduct.id}">
                     Update
                   </span>
                   <span class="delete-quantity-link link-primary" data-product-id=${matchingProduct.id}>
@@ -99,5 +102,15 @@ document.querySelectorAll('.delete-quantity-link').forEach((button) => {
     const productId = button.getAttribute('data-product-id');
     removeFromCart(productId);
     document.querySelector(`.js-cart-item-container-${productId}`).remove();
+    updateCartQuantity('.js-return-to-home-link', ' items');
   });
 })
+
+// Add event listeners to the update quantity links
+document.querySelectorAll('.update-quantity-link').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    const productId = link.getAttribute('data-product-id');
+    console.log('update quantity for product id:', productId);
+  })
+})
+

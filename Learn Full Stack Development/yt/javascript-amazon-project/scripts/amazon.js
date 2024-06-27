@@ -34,8 +34,8 @@ products.forEach((product) => {
               <option value="4">4</option>
               <option value="5">5</option>
               <option value="6">6</option>
-              <option value="7">7</option>
               <option value="8">8</option>
+              <option value="7">7</option>
               <option value="9">9</option>
               <option value="10">10</option>
             </select>
@@ -57,7 +57,7 @@ products.forEach((product) => {
 document.querySelector('.products-grid').innerHTML = productsHTML;
 
 document.addEventListener('DOMContentLoaded', () => {
-  updateCartQuantity();
+  updateCartQuantity('.cart-quantity');
 });
 
 // Add the event listener to the add to cart button
@@ -68,24 +68,34 @@ document.querySelectorAll('.js-add-to-card').forEach((button, index) => {
     const quantity = parseInt(quantitySelectorElement.value);
 
     addToCart(productId, quantity);
+
+    updateCartQuantity('.cart-quantity');
+
     // show hint added to cart
     showHintAddedToCart(productId);
 
-    updateCartQuantity();
-
+    // Reset the quantity selector to 1
     quantitySelectorElement.value = 1;
     console.log(cart);
   })
 })
 
 function showHintAddedToCart(productId) {
-  // Select all elements with the class .added-to-cart
-  const elements = document.querySelector(`.added-to-cart-${productId}`);
+  const element = document.querySelector(`.added-to-cart-${productId}`);
 
-  // Iterate over the selected elements and change the opacity
-  elements.forEach(element => {
-    element.style.opacity = '1'; // Change opacity to 1 to make it visible
-  });
+  element.style.opacity = '1';
+  // Ensure any existing timeout is cleared before setting a new one
+  if (element.timeoutId) {
+    clearTimeout(element.timeoutId);
+  }
+
+  // Set timeout and capture its ID
+  element.timeoutId = setTimeout(() => {
+    element.style.opacity = '0';
+    element.style.transition = 'opacity 0.5s';
+    // Clear the timeoutId after it executes
+    delete element.timeoutId;
+  }, 2000);
 }
 
 
