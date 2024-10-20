@@ -1,18 +1,40 @@
-// Online C++ compiler to run C++ program online
 #include <cmath>
 #include <iostream>
 #include <string>
 using namespace std;
 
-int mytobinary(int num) {
-  int rem, sum = 0, place = 0, prod = 0;
+int toBinary(int num) {
+  int rem, pwr = 0;
+  uint64_t sum = 0;
   while (num != 0) {
     rem = num % 2;
-    prod = rem * pow(10, place++);
-    sum += prod;
+    sum += rem * pow(10, pwr++);
     num = num / 2;
   }
   return sum;
+}
+
+int toBinary2(int num) {
+  int sum = 0, pwr = 1;
+  while (num > 0) {
+    int rem = num % 2;
+    sum += rem * pwr;
+    pwr *= 10;
+    num /= 2;
+  }
+  return sum;
+}
+
+string stoBinary(int num) {
+  if (num == 0)
+    return "0";
+
+  string result = "";
+  while (num > 0) {
+    result = (num % 2 == 0 ? "0" : "1") + result;
+    num /= 2;
+  }
+  return result;
 }
 
 string baseTenWithDeciToBinary(float num) {
@@ -38,7 +60,7 @@ int main() {
   int whole = static_cast<int>(num);
   float part = num - whole;
 
-  int bin = mytobinary(whole);
+  uint64_t bin = toBinary2(whole);
 
   string partInBin = baseTenWithDeciToBinary(part);
 
