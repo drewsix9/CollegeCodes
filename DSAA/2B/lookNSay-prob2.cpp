@@ -4,46 +4,41 @@
 #include <iostream>
 #include <map>
 #include <queue>
-#include <vector>
+#include <string>
 
 using namespace std;
 
-vector<int> process(vector<int> v) {
-  map<int, int> map;
-  for (int n : v) {
-    map[n]++;
+string say(int num) {
+  vector<int> v;
+  string res;
+  map<int, int> freq;
+  string str = to_string(num);
+  for (char c : str) {
+    int current = c - '0';
+    if (freq[current] == 0)
+      v.emplace_back(current);
+    freq[current]++;
   }
-  vector<int> res;
-  for (int n : v) {
-    res.push_back(map[n]);
-  }
+  for (int n : v)
+    res += to_string(freq[n]) + to_string(n);
   return res;
 }
 
-void printV(vector<int> v) {
-  cout << "                        ";
-  for (int n : v) {
-    cout << n << " ";
-  }
-  cout << endl;
-}
-
 int main() {
-  int size, num;
-  vector<int> v;
-  cout << "\nEnter how many interations: ";
-  cin >> size;
-  cout << "\nEnter initial sequence: ";
-  while (cin >> num && num != 0)
-    v.push_back(num);
+  queue<int> q;
+  int max, input;
+  cout << "\nEnter max size: ";
+  cin >> max;
+  cout << "\nEnter input: ";
+  cin >> input;
+  cout << "\nOutput:\n";
 
-  queue<vector<int>> q;
-  q.push(v);
-  while (size > 0) {
-    vector<int> vFront = process(q.front());
-    printV(vFront);
-    q.push(vFront);
+  while (max > 0) {
+    int current = q.front();
+    string n = say(current);
+    cout << n << endl;
     q.pop();
-    size--;
+    q.push(stoi(n));
+    max--;
   }
 }
