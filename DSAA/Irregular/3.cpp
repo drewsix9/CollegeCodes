@@ -16,9 +16,7 @@ input: 110
 cannot push cause di palindrome
 */
 
-#include <iostream>
-#include <stack>
-#include <string>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -74,35 +72,35 @@ int main() {
     cout << "\n1. Push 2. Pop 3. Display 4. Exit: ";
     cin >> choice;
     switch (choice) {
-    case 1:
-      cout << "Enter input: ";
-      cin >> num;
-      if (stk.size() >= size) {
-        cout << "Stack is full" << endl;
+      case 1:
+        cout << "Enter input: ";
+        cin >> num;
+        if (stk.size() >= size) {
+          cout << "Stack is full" << endl;
+          break;
+        }
+        bin = stoi(num);
+        deci = binToDeci(bin);
+        if (hasDecimal(num) || !isPrime(deci) || !isPalindrome(to_string(bin))) {
+          cout << "Invalid input" << endl;
+          break;
+        }
+        cout << "Pushed " << deci << " to stack." << endl;
+        stk.push(deci);
         break;
-      }
-      bin = stoi(num);
-      deci = binToDeci(bin);
-      if (hasDecimal(num) || !isPrime(deci) || !isPalindrome(to_string(bin))) {
-        cout << "Invalid input" << endl;
+      case 2:
+        if (stk.empty()) {
+          cout << "Stack is empty" << endl;
+          break;
+        }
+        cout << "Popped " << stk.top() << " from stack." << endl;
+        stk.pop();
         break;
-      }
-      cout << "Pushed " << deci << " to stack." << endl;
-      stk.push(deci);
-      break;
-    case 2:
-      if (stk.empty()) {
-        cout << "Stack is empty" << endl;
+      case 3:
+        printStk(stk);
         break;
-      }
-      cout << "Popped " << stk.top() << " from stack." << endl;
-      stk.pop();
-      break;
-    case 3:
-      printStk(stk);
-      break;
-    case 4:
-      return 0;
+      case 4:
+        return 0;
     }
   }
 }
