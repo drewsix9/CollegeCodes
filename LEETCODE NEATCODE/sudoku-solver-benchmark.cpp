@@ -225,8 +225,8 @@ public:
     uint16_t bit = 0;
 
     for (; notMask; notMask ^= bit) {
-      bit = bit_floor(notMask);
-      const int nthBit = countr_zero(bit);
+      bit = __bit_floor(notMask);
+      const int nthBit = __countr_zero(bit);
       char tryChar = '1' + nthBit;
 
       board[i][j] = tryChar;
