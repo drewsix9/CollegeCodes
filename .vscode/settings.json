@@ -91,5 +91,6 @@
     "string.h": "c",
     "ctype.h": "c"
   },
-  "livePreview.defaultPreviewPath": "/Learn Full Stack Development/4 Registration Form/index.html"
+  "livePreview.defaultPreviewPath": "/Learn Full Stack Development/4 Registration Form/index.html",
+  "C_Cpp.default.compilerPath": "G:/dev/mingw32/bin/g++.exe"
 }

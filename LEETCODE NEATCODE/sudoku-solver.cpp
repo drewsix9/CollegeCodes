@@ -2,6 +2,7 @@
 #include <vector>
 #include <set>
 #include <map>
+#include <bit>
 #include <windows.h>  // For Sleep function
 
 using namespace std;
@@ -15,9 +16,8 @@ public:
 		mp_rows.resize(9);
 		mp_cols.resize(9);
 	}
-	bool isValid(vector<vector<char>>& board, int i, int j, int numTry) {
-		char curr = board[i][j];
-		return (mp_rows[i].count(curr) == 0 && mp_cols[j].count(curr) == 0 && mp_grid[ {i / 3, j / 3}].count(curr) == 0);
+	bool isValid(vector<vector<char>>& board, int i, int j, char tryChar) {
+		return (mp_rows[i].count(tryChar) == 0 && mp_cols[j].count(tryChar) == 0 && mp_grid[ {i / 3, j / 3}].count(tryChar) == 0);
 	}
 
 	void solveSudoku(vector<vector<char>>& board) {
@@ -39,18 +39,19 @@ public:
 				char curr = board[i][j];
 				if (curr != '.')continue;
 				for (int n = 1; n <= 9; n++) {
-					if (isValid(board, i, j, n)) {
-						board[i][j] = char(n + '0');
-						mp_rows[i].insert(curr);
-						mp_cols[j].insert(curr);
-						mp_grid[ {i / 3, j / 3}].insert(curr);
+					char tryChar = char(n + '0');
+					if (isValid(board, i, j, tryChar)) {
+						board[i][j] = tryChar;
+						mp_rows[i].insert(tryChar);
+						mp_cols[j].insert(tryChar);
+						mp_grid[ {i / 3, j / 3}].insert(tryChar);
 						if (solveSudokuRecurse(board)) {
 							return true;
 						} else {
 							board[i][j] = '.';
-							mp_rows[i].erase(curr);
-							mp_cols[j].erase(curr);
-							mp_grid[ {i / 3, j / 3}].erase(curr);
+							mp_rows[i].erase(tryChar);
+							mp_cols[j].erase(tryChar);
+							mp_grid[ {i / 3, j / 3}].erase(tryChar);
 						}
 					}
 				}
@@ -88,26 +89,27 @@ public:
 				if (curr != '.')continue;
 				for (int n = 1; n <= 9; n++) {
 					char tryChar = char(n + '0');
-					if (mp_rows[i].count(tryChar) == 0 && 
-					    mp_cols[j].count(tryChar) == 0 && 
-					    mp_grid[{i / 3, j / 3}].count(tryChar) == 0) {
-						
+					if (mp_rows[i].count(tryChar) == 0 &&
+					    mp_cols[j].count(tryChar) == 0 &&
+					    mp_grid[ {i / 3, j / 3}].count(tryChar) == 0) {
+
 						board[i][j] = tryChar;
 						mp_rows[i].insert(tryChar);
 						mp_cols[j].insert(tryChar);
-						mp_grid[{i / 3, j / 3}].insert(tryChar);
-						
+						mp_grid[ {i / 3, j / 3}].insert(tryChar);
+
 						printBoard(board, i, j);
 						cout << "Trying " << tryChar << " at position (" << i << ", " << j << ")\n";
-						
+
 						if (solveSudokuRecurseVisual(board)) {
 							return true;
 						} else {
-					cout << "Backtracking from (" << i << ", " << j << ")...\n";
-					Sleep(50);							board[i][j] = '.';
+							cout << "Backtracking from (" << i << ", " << j << ")...\n";
+							Sleep(50);
+							board[i][j] = '.';
 							mp_rows[i].erase(tryChar);
 							mp_cols[j].erase(tryChar);
-							mp_grid[{i / 3, j / 3}].erase(tryChar);
+							mp_grid[ {i / 3, j / 3}].erase(tryChar);
 						}
 					}
 				}
@@ -124,14 +126,14 @@ public:
 				if (curr == '.') continue;
 				mp_rows[i].insert(curr);
 				mp_cols[j].insert(curr);
-				mp_grid[{i / 3, j / 3}].insert(curr);
+				mp_grid[ {i / 3, j / 3}].insert(curr);
 			}
 		}
 		cout << "Starting Sudoku Solver with Visual Backtracking...\n";
 		Sleep(1000);
 		printBoard(board);
 		solveSudokuRecurseVisual(board);
-		cout << "\n\n✓ Sudoku Solved!\n";
+		cout << "\n\n Sudoku Solved!\n";
 	}
 
 	void printSets() {
@@ -154,8 +156,116 @@ public:
 	}
 };
 
+class Solution2 {
+	uint16_t rows[9] = {0};
+	uint16_t cols[9] = {0};
+	uint16_t subgrid[9] = {0};
+	vector<pair<int, int>> blanks;
+	bool visualMode = false;
+public:
+
+	void setup(vector<vector<char>>& board) {
+		blanks.reserve(81);
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				if (board[i][j] == '.') {
+					blanks.emplace_back(i, j);
+				} else {
+					set3Cond(i, j, board[i][j] - '1');
+				}
+			}
+		}
+	}
+
+	void printBoard(vector<vector<char>>& board, int highlightRow = -1, int highlightCol = -1) {
+		system("cls");  // Clear screen for Windows
+		cout << "\n+----------+----------+----------+\n";
+		for (int i = 0; i < 9; i++) {
+			cout << "| ";
+			for (int j = 0; j < 9; j++) {
+				if (i == highlightRow && j == highlightCol) {
+					cout << "[" << board[i][j] << "]";  // Brackets for current cell
+				} else {
+					cout << " " << board[i][j] << " ";
+				}
+				if ((j + 1) % 3 == 0) cout << "| ";
+			}
+			cout << "\n";
+			if ((i + 1) % 3 == 0) {
+				cout << "+----------+----------+----------+\n";
+			}
+		}
+		Sleep(100);  // Delay to visualize (milliseconds)
+	}
+
+	void set3Cond(int i, int j, int n) {
+		const int16_t mask = 1 << n;
+		rows[i] |= mask;
+		cols[j] |= mask;
+
+		const int16_t gridIndx = (i / 3) * 3 + j / 3;
+		subgrid[gridIndx] |= mask;
+	}
+
+	bool solve(vector<vector<char>>& board, uint16_t indx) {
+		if (indx == blanks.size()) {
+			return true;
+		}
+
+		auto [i, j] = blanks[indx];
+		const int gridIndx = (i / 3) * 3 + j / 3;
+		uint16_t notMask = ~(rows[i] | cols[j] | subgrid[gridIndx]) & 0b111111111;
+		uint16_t bit = 0;
+
+		for (; notMask; notMask ^= bit) {
+			bit = bit_floor(notMask);
+			const int nthBit = countr_zero(bit);
+			char tryChar = '1' + nthBit;
+
+			board[i][j] = tryChar;
+			rows[i] |= bit;
+			cols[j] |= bit;
+			subgrid[gridIndx] |= bit;
+
+			if (visualMode) {
+				printBoard(board, i, j);
+				cout << "Trying " << tryChar << " at position (" << i << ", " << j << ")\n";
+			}
+
+			if (solve(board, indx + 1)) return true;
+
+			if (visualMode) {
+				cout << "Backtracking from (" << i << ", " << j << ")...\n";
+				Sleep(50);
+			}
+
+			rows[i] ^= bit;
+			cols[j] ^= bit;
+			subgrid[gridIndx] ^= bit;
+			board[i][j] = '.';
+		}
+		return false;
+	}
+
+	void solveSudokuVisual(vector<vector<char>>& board) {
+		visualMode = true;
+		setup(board);
+		cout << "Starting Sudoku Solver (Optimized) with Visual Backtracking...\n";
+		Sleep(1000);
+		printBoard(board);
+		solve(board, 0);
+		cout << "\n\n Sudoku Solved!\n";
+	}
+
+	void solveSudoku(vector<vector<char>>& board) {
+		visualMode = false;
+		setup(board);
+		solve(board, 0);
+	}
+};
+
 int main() {
-	Solution sol;
+	Solution2 sol;
 	vector<vector<char>> board(9, vector<char>(9));
 	cout << "Enter board:\n";
 	for (int i = 0; i < 9; i++) {
@@ -171,7 +281,7 @@ int main() {
 		cout << endl;
 	}
 	sol.solveSudokuVisual(board);
-	
+
 	cout << "\nFinal board:\n";
 	for (auto &v : board) {
 		for (char &c : v) {
